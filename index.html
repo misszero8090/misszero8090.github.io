@@ -274,6 +274,277 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2017/06/06/iOS开发中工具类（方法）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headerImage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="罗尧’s Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/06/iOS开发中工具类（方法）/" itemprop="url">iOS开发中工具类（方法）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-06T16:04:47+08:00">
+                2017-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术分享/" itemprop="url" rel="index">
+                    <span itemprop="name">技术分享</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。<br></p>
+<p>目录</p>
+</blockquote>
+<ul>
+<li>UIbutton图片和文字默认偏移（上下）</li>
+<li>判断设置是否越狱</li>
+<li>判断是否是数字</li>
+<li>判断是否是字符（a-z）</li>
+<li>获取当前任务占用的内存</li>
+<li>获取中英文混合字符串的长度</li>
+<li>获取字节长度</li>
+<li>获取app的沙盒路径</li>
+<li>为Button绘制背景图片</li>
+<li>判断空字符串</li>
+<li>判断单个文件大小</li>
+<li>获取视频第一帧</li>
+<li>获取系统字体</li>
+<li>比对与当前时间的天数差</li>
+<li>色值转换（#2324512z转UIColor）</li>
+<li>通过颜色设置图片</li>
+<li>通过颜色设置图片（有高度）</li>
+<li>将图片转换为黑白</li>
+<li>缓存图片到本地  (注意：需要指定缓存路径，获取到本地沙盒路径等)。</li>
+<li>图片裁剪（传入Rect）</li>
+<li>按尺寸压缩图片</li>
+</ul>
+<hr>
+<blockquote>
+<p>ARC &amp;&amp; MRC 使用</p>
+</blockquote>
+<ul>
+<li>ARC环境中引入MRC文件  加入<code>-fno-objc-arc</code><br></li>
+<li>MRC环境引入ARC文件，加入：<code>-fobjc-arc</code></li>
+</ul>
+<hr>
+<ul>
+<li>UIbutton图片和文字默认偏移（上下）<br>注意：传入需要设置的Button和文字和图片之间的垂直距离即可。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">+ (void)setButtonImageAndTitleVerticalCenterWithSpace:(CGFloat)space button:(UIButton *)button</div><div class="line">&#123;</div><div class="line">    CGSize imageSize = button.imageView.frame.size;</div><div class="line">    CGSize titleSize = [button.titleLabel.text sizeWithAttributes:@&#123;NSFontAttributeName:[UIFont systemFontOfSize:12]&#125;];</div><div class="line">    CGFloat totalHeight = (imageSize.height + titleSize.height + space);</div><div class="line">    button.imageEdgeInsets = UIEdgeInsetsMake(- (totalHeight - imageSize.height), 0.0, 0.0, - titleSize.width);</div><div class="line">    button.titleEdgeInsets = UIEdgeInsetsMake(0.0, - imageSize.width, - (totalHeight - titleSize.height),0.0);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>判断设置是否越狱</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">+ (BOOL)isJailbroken &#123;</div><div class="line">    BOOL jailbroken = NO;</div><div class="line">    NSString *cydiaPath = @&quot;/Applications/Cydia.app&quot;;</div><div class="line">    NSString *aptPath = @&quot;/private/var/lib/apt/&quot;;</div><div class="line">    if ([[NSFileManager defaultManager] fileExistsAtPath:cydiaPath]) &#123;</div><div class="line">        jailbroken = YES;</div><div class="line">    &#125;</div><div class="line">    if ([[NSFileManager defaultManager] fileExistsAtPath:aptPath]) &#123;</div><div class="line">        jailbroken = YES;</div><div class="line">    &#125;</div><div class="line">    return jailbroken;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>判断是否是数字</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">+ (BOOL) validateNumber: (NSString *) number&#123;</div><div class="line">    NSString *reg = @&quot;^[0-9]*$&quot;;</div><div class="line">    NSPredicate *numberTest = [NSPredicate predicateWithFormat:@&quot;SELF MATCHES %@&quot;, reg];</div><div class="line">    return [numberTest evaluateWithObject:number];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>判断是否是字符（a-z）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">+ (BOOL)validata:(NSString *)number&#123;</div><div class="line">    NSString *regex = @&quot;[A-Za-z]+&quot;;</div><div class="line">    NSPredicate *numberTest = [NSPredicate predicateWithFormat:@&quot;SELF MATCHES %@&quot;, regex];</div><div class="line">    return [numberTest evaluateWithObject:number];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>获取当前任务占用的内存</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">+ (double)usedMemory</div><div class="line">&#123;</div><div class="line">    task_basic_info_data_t taskInfo;</div><div class="line">    mach_msg_type_number_t infoCount = TASK_BASIC_INFO_COUNT;</div><div class="line">    kern_return_t kernReturn = task_info(mach_task_self(),</div><div class="line">                                         TASK_BASIC_INFO, (task_info_t)&amp;taskInfo, &amp;infoCount);</div><div class="line">    if(kernReturn != KERN_SUCCESS) &#123;</div><div class="line">        return NSNotFound;</div><div class="line">    &#125;</div><div class="line">    return taskInfo.resident_size / 1024.0 / 1024.0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>获取中英文混合字符串的长度</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">+ (int)convertToInt:(NSString*)strtemp</div><div class="line">&#123;</div><div class="line">    int strlength = 0;</div><div class="line">    char* p = (char*)[strtemp cStringUsingEncoding:NSUnicodeStringEncoding];</div><div class="line">    for (int i=0 ; i&lt;[strtemp lengthOfBytesUsingEncoding:NSUnicodeStringEncoding] ;i++) &#123;</div><div class="line">        if (*p) &#123;</div><div class="line">            p++;</div><div class="line">            strlength++;</div><div class="line">        &#125;</div><div class="line">        else &#123;</div><div class="line">            p++;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    return strlength;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>获取字节长度</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">+(NSUInteger) unicodeLengthOfString: (NSString *) text &#123;</div><div class="line">    NSUInteger asciiLength = 0;</div><div class="line"></div><div class="line">    for (NSUInteger i = 0; i &lt; text.length; i++) &#123;</div><div class="line">        unichar uc = [text characterAtIndex: i];</div><div class="line">        asciiLength += isascii(uc) ? 1 : 2;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    NSUInteger unicodeLength = asciiLength / 2;</div><div class="line"></div><div class="line">    if(asciiLength % 2) &#123;</div><div class="line">        unicodeLength++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return unicodeLength;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>获取app的沙盒路径</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">+ (NSString *)documentPath</div><div class="line">&#123;</div><div class="line">    // 获取应用程序沙盒的Documents目录</div><div class="line">    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);</div><div class="line">    return [paths objectAtIndex:0];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>为Button绘制背景图片</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">+ (void)backgroundTurnRedForButton:(UIButton *)button red:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha  type:(int) type&#123;</div><div class="line">    CGSize size = button.frame.size;</div><div class="line">    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];</div><div class="line">    view.layer.cornerRadius = 6;</div><div class="line">    view.clipsToBounds = true;</div><div class="line">    view.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];</div><div class="line">    UIGraphicsBeginImageContext(size);</div><div class="line">    [view.layer renderInContext:UIGraphicsGetCurrentContext()];</div><div class="line"></div><div class="line">    UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();</div><div class="line">    UIGraphicsEndImageContext();</div><div class="line">    switch (type) &#123;</div><div class="line">        case 0:</div><div class="line">            [button setBackgroundImage:screenImage forState:UIControlStateNormal];</div><div class="line">            break;</div><div class="line">        case 1:</div><div class="line">            [button setBackgroundImage:screenImage forState:UIControlStateHighlighted];</div><div class="line">            break;</div><div class="line">        default:</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>判断空字符串</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">+(BOOL) isEmptyOrNull:(NSString *) str &#123;</div><div class="line">    if (!str) &#123;</div><div class="line">        // null object</div><div class="line">        return YES;</div><div class="line">    &#125; else &#123;</div><div class="line">        NSString *trimedString = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];</div><div class="line">        if ([trimedString length] == 0) &#123;</div><div class="line">            // empty string</div><div class="line">            return YES;</div><div class="line">        &#125; else &#123;</div><div class="line">            // is neither empty nor null</div><div class="line">            return NO;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>判断单个文件大小</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+(long long)fileSizeAtPath:(NSString*)filePath&#123;</div><div class="line">    NSFileManager* manager = [NSFileManager defaultManager];</div><div class="line">    if ([manager fileExistsAtPath:filePath])&#123;</div><div class="line">        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>获取视频第一帧</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">+(UIImage *)getPreViewImg:(NSString *)url</div><div class="line">&#123;</div><div class="line">    UIImage *img = nil;</div><div class="line">    @autoreleasepool &#123;</div><div class="line">        NSURL *urlvideo = nil;</div><div class="line"></div><div class="line">        if([url hasPrefix:@&quot;assets-library:&quot;] ) &#123;</div><div class="line">            urlvideo = [NSURL URLWithString:url];</div><div class="line">        &#125;else&#123;</div><div class="line">            urlvideo = [[NSURL alloc]initFileURLWithPath:url];</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:urlvideo options:nil];</div><div class="line">        AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];</div><div class="line">        gen.appliesPreferredTrackTransform = YES;</div><div class="line">        CMTime time = CMTimeMakeWithSeconds(0.0, 600);</div><div class="line">        NSError *error = nil;</div><div class="line">        CMTime actualTime;</div><div class="line">        CGImageRef image = [gen copyCGImageAtTime:time actualTime:&amp;actualTime error:&amp;error];</div><div class="line">        img = [[UIImage alloc] initWithCGImage:image];</div><div class="line">        CGImageRelease(image);</div><div class="line">    &#125;</div><div class="line">    return img;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>获取本机IP</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">+ (NSString *)getIPAddress</div><div class="line">&#123;</div><div class="line"></div><div class="line">    NSString *address = @&quot;error&quot;;</div><div class="line">    struct ifaddrs *interfaces = NULL;</div><div class="line">    struct ifaddrs *temp_addr = NULL;</div><div class="line">    int success = 0;</div><div class="line"></div><div class="line">    // retrieve the current interfaces - returns 0 on success</div><div class="line">    success = getifaddrs(&amp;interfaces);</div><div class="line">    if (success == 0) &#123;</div><div class="line">        // Loop through linked list of interfaces</div><div class="line">        temp_addr = interfaces;</div><div class="line">        while (temp_addr != NULL) &#123;</div><div class="line">            if( temp_addr-&gt;ifa_addr-&gt;sa_family == AF_INET) &#123;</div><div class="line">                // Check if interface is en0 which is the wifi connection on the iPhone</div><div class="line">                if ([[NSString stringWithUTF8String:temp_addr-&gt;ifa_name] isEqualToString:@&quot;en0&quot;]) &#123;</div><div class="line">                    // Get NSString from C String</div><div class="line">                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr-&gt;ifa_addr)-&gt;sin_addr)];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            temp_addr = temp_addr-&gt;ifa_next;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Free memory</div><div class="line">    freeifaddrs(interfaces);</div><div class="line"></div><div class="line">    return address;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>获取系统字体</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">+ (UIFont*)getCurrentFont</div><div class="line">&#123;</div><div class="line">    //判断系统字体的size，返回使用的字体。</div><div class="line">    UIFont *font = [UIFont systemFontOfSize:[UIFont systemFontSize]];</div><div class="line">    return font;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>比对与当前时间的天数差</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">*</div><div class="line"> *对比两个时间</div><div class="line"> *date:需要跟当前时间对比的时间</div><div class="line"> */</div><div class="line">+ (int)getTimedif:(NSDate*)date</div><div class="line">&#123;</div><div class="line">    int num = 0;</div><div class="line">    if (!date) &#123;</div><div class="line">        return num;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    NSCalendar *calendar = [NSCalendar currentCalendar];</div><div class="line">    NSDateComponents *components = [calendar components:NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:[NSDate date]];</div><div class="line">    NSDateComponents *dtComponents = [calendar components:NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:date];</div><div class="line">    num = [components day] - [dtComponents day];</div><div class="line">    return num;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>颜色</p>
+</blockquote>
+<ul>
+<li>色值转换（#2324512z转UIColor）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">+ (UIColor *)hexString:(NSString *)hex&#123;</div><div class="line">    hex = [hex stringByReplacingOccurrencesOfString:@&quot;#&quot; withString:@&quot;&quot;];</div><div class="line">    if (hex.length&lt;6) &#123;</div><div class="line">        return nil;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    unsigned int r,g,b;</div><div class="line">    NSRange stringRange;</div><div class="line"></div><div class="line">    stringRange.length = 2;</div><div class="line">    stringRange.location = 0;</div><div class="line">    [[NSScanner scannerWithString:[hex substringWithRange:stringRange]] scanHexInt:&amp;r];</div><div class="line"></div><div class="line">    stringRange.location = 2;</div><div class="line">    [[NSScanner scannerWithString:[hex substringWithRange:stringRange]] scanHexInt:&amp;g];</div><div class="line"></div><div class="line">    stringRange.location = 4;</div><div class="line">    [[NSScanner scannerWithString:[hex substringWithRange:stringRange]] scanHexInt:&amp;b];</div><div class="line"></div><div class="line">	float fr = (r * 1.0f) / 255.0f;</div><div class="line">	float fg = (g * 1.0f) / 255.0f;</div><div class="line">	float fb = (b * 1.0f) / 255.0f;</div><div class="line"></div><div class="line">	return [UIColor colorWithRed:fr green:fg blue:fb alpha:1.0f];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>通过颜色设置图片</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">+ (UIImage *)createImageWithColor:(UIColor *)color</div><div class="line">&#123;</div><div class="line">    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);</div><div class="line">    UIGraphicsBeginImageContext(rect.size);</div><div class="line">    CGContextRef context = UIGraphicsGetCurrentContext();</div><div class="line">    CGContextSetFillColorWithColor(context, [color CGColor]);</div><div class="line">    CGContextFillRect(context, rect);</div><div class="line">    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();</div><div class="line">    UIGraphicsEndImageContext();</div><div class="line"></div><div class="line">    return theImage;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>通过颜色设置图片（有高度）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (UIImage*) GetImageWithColor:(UIColor*)color andHeight:(CGFloat)height</div><div class="line">&#123;</div><div class="line">    CGRect r= CGRectMake(0.0f, 0.0f, 1.0f, height);</div><div class="line">    UIGraphicsBeginImageContext(r.size);</div><div class="line">    CGContextRef context = UIGraphicsGetCurrentContext();</div><div class="line">    CGContextSetFillColorWithColor(context, [color CGColor]);</div><div class="line">    CGContextFillRect(context, r);</div><div class="line">    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();</div><div class="line">    UIGraphicsEndImageContext();</div><div class="line">    return img;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>图片处理</p>
+</blockquote>
+<ul>
+<li>裁剪图片为圆形</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">+(UIImage*) circleImage:(UIImage*) image withParam:(CGFloat) inset &#123;</div><div class="line">    UIGraphicsBeginImageContext(image.size);</div><div class="line">    CGContextRef context = UIGraphicsGetCurrentContext();</div><div class="line">    CGContextSetLineWidth(context, 20);</div><div class="line">    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);</div><div class="line">    CGRect rect = CGRectMake(inset, inset, image.size.width - inset * 2.0f, image.size.height - inset * 2.0f);</div><div class="line">    CGContextAddEllipseInRect(context, rect);</div><div class="line">    CGContextClip(context);</div><div class="line"></div><div class="line">    [image drawInRect:rect];</div><div class="line">    CGContextAddEllipseInRect(context, rect);</div><div class="line">    CGContextStrokePath(context);</div><div class="line">    UIImage *newimg = UIGraphicsGetImageFromCurrentImageContext();</div><div class="line">    UIGraphicsEndImageContext();</div><div class="line">    return newimg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>为图片添加圆角显示</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">//给图片添加圆角显示</div><div class="line">+ (UIImage *) roundCorners: (UIImage*) img</div><div class="line">&#123;</div><div class="line">    int w = img.size.width;</div><div class="line">    int h = img.size.height;</div><div class="line"></div><div class="line">    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();</div><div class="line">    CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedFirst);</div><div class="line"></div><div class="line">    CGContextBeginPath(context);</div><div class="line">    CGRect rect = CGRectMake(0, 0, img.size.width, img.size.height);</div><div class="line">    addRoundedRectToPath(context, rect, 10, 10);</div><div class="line">    CGContextClosePath(context);</div><div class="line">    CGContextClip(context);</div><div class="line"></div><div class="line">    CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);</div><div class="line"></div><div class="line">    CGImageRef imageMasked = CGBitmapContextCreateImage(context);</div><div class="line">    CGContextRelease(context);</div><div class="line">    CGColorSpaceRelease(colorSpace);</div><div class="line">    UIImage *images = [UIImage imageWithCGImage:imageMasked];</div><div class="line">    CGImageRelease(imageMasked);</div><div class="line">    return images;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>将图片转换为黑白</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line">+ (UIImage*)blackAndWhitePhoto:(UIImage*)anImage</div><div class="line">&#123;</div><div class="line"></div><div class="line">    CGImageRef imageRef = anImage.CGImage;</div><div class="line"></div><div class="line">    size_t width  = CGImageGetWidth(imageRef);</div><div class="line">    size_t height = CGImageGetHeight(imageRef);</div><div class="line"></div><div class="line">    size_t bitsPerComponent = CGImageGetBitsPerComponent(imageRef);</div><div class="line">    size_t bitsPerPixel = CGImageGetBitsPerPixel(imageRef);</div><div class="line"></div><div class="line">    size_t bytesPerRow = CGImageGetBytesPerRow(imageRef);</div><div class="line"></div><div class="line">    CGColorSpaceRef colorSpace = CGImageGetColorSpace(imageRef);</div><div class="line"></div><div class="line">    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);</div><div class="line"></div><div class="line"></div><div class="line">    bool shouldInterpolate = CGImageGetShouldInterpolate(imageRef);</div><div class="line"></div><div class="line">    CGColorRenderingIntent intent = CGImageGetRenderingIntent(imageRef);</div><div class="line"></div><div class="line">    CGDataProviderRef dataProvider = CGImageGetDataProvider(imageRef);</div><div class="line"></div><div class="line">    CFDataRef data = CGDataProviderCopyData(dataProvider);</div><div class="line"></div><div class="line">    UInt8 *buffer = (UInt8*)CFDataGetBytePtr(data);</div><div class="line"></div><div class="line">    NSUInteger  x, y;</div><div class="line">    for (y = 0; y &lt; height; y++) &#123;</div><div class="line">        for (x = 0; x &lt; width; x++) &#123;</div><div class="line">            UInt8 *tmp;</div><div class="line">            tmp = buffer + y * bytesPerRow + x * 4;</div><div class="line"></div><div class="line">            UInt8 red,green,blue;</div><div class="line">            red = *(tmp + 0);</div><div class="line">            green = *(tmp + 1);</div><div class="line">            blue = *(tmp + 2);</div><div class="line"></div><div class="line">            UInt8 brightness;</div><div class="line">            brightness = (77 * red + 28 * green + 151 * blue) / 256;</div><div class="line">            *(tmp + 0) = brightness;</div><div class="line">            *(tmp + 1) = brightness;</div><div class="line">            *(tmp + 2) = brightness;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    CFDataRef effectedData = CFDataCreate(NULL, buffer, CFDataGetLength(data));</div><div class="line"></div><div class="line">    CGDataProviderRef effectedDataProvider = CGDataProviderCreateWithCFData(effectedData);</div><div class="line"></div><div class="line">    CGImageRef effectedCgImage = CGImageCreate(</div><div class="line">                                               width, height,</div><div class="line">                                               bitsPerComponent, bitsPerPixel, bytesPerRow,</div><div class="line">                                               colorSpace, bitmapInfo, effectedDataProvider,</div><div class="line">                                               NULL, shouldInterpolate, intent);</div><div class="line"></div><div class="line">    UIImage *effectedImage = [[UIImage alloc] initWithCGImage:effectedCgImage];</div><div class="line"></div><div class="line">    CGImageRelease(effectedCgImage);</div><div class="line"></div><div class="line">    CFRelease(effectedDataProvider);</div><div class="line"></div><div class="line">    CFRelease(effectedData);</div><div class="line"></div><div class="line">    CFRelease(data);</div><div class="line"></div><div class="line">    return effectedImage;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>缓存图片到本地</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">注意：需要指定缓存路径，获取到本地沙盒路径等。</div><div class="line">+ (void)saveImageimageData:(NSData *)imgData</div><div class="line">&#123;</div><div class="line">    NSString *path = @&quot;chat/Image_send/&quot;;</div><div class="line">    if (![[NSFileManager defaultManager]fileExistsAtPath:[[LX_Sandbox docPath] stringByAppendingPathComponent:path]])</div><div class="line">        [[NSFileManager defaultManager]createDirectoryAtPath:[[LX_Sandbox docPath]stringByAppendingPathComponent:path] withIntermediateDirectories:YES attributes:nil error:nil];</div><div class="line"></div><div class="line">    NSString *imgPath = [[[LX_Sandbox docPath]stringByAppendingPathComponent:path]stringByAppendingPathComponent:[NSString stringWithFormat:@&quot;%@.png&quot;,[Function getSendMessageTime]]];</div><div class="line">    if ([[NSFileManager defaultManager]fileExistsAtPath:imgPath]) &#123;</div><div class="line">        [[NSFileManager defaultManager]removeItemAtPath:imgPath error:nil];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    if ([[NSFileManager defaultManager]createFileAtPath:imgPath contents:nil attributes:nil]) &#123;</div><div class="line">        [imgData writeToFile:imgPath  atomically:YES];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>图片裁剪（传入Rect）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+(UIImage *)imageCropping:(UIImage*)image  rect:(CGRect)rect&#123;</div><div class="line"></div><div class="line">    CGImageRef cr = CGImageCreateWithImageInRect([image CGImage], rect);</div><div class="line">	UIImage *cropped = [UIImage imageWithCGImage:cr];</div><div class="line">	CGImageRelease(cr);</div><div class="line">    return cropped;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>按尺寸压缩图片</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">+ (UIImage*)scaleFromImage:(UIImage*)image scaledToSize:(CGSize)newSize</div><div class="line">&#123;</div><div class="line">    UIImage* newImage = nil;</div><div class="line">    @autoreleasepool &#123;</div><div class="line">        CGSize  imageSize = image.size;</div><div class="line">        CGFloat width = imageSize.width;</div><div class="line">        CGFloat height = imageSize.height;</div><div class="line"></div><div class="line">        if(width &lt;= newSize.width &amp;&amp; height &lt;= newSize.height)&#123;</div><div class="line">            return image;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        if(width == 0 || height == 0)&#123;</div><div class="line">            return image;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        CGFloat widthFactor = newSize.width / width;</div><div class="line">        CGFloat heightFactor = newSize.height / height;</div><div class="line">        CGFloat scaleFactor = (widthFactor&lt;heightFactor?widthFactor:heightFactor);</div><div class="line"></div><div class="line">        CGFloat scaledWidth = width * scaleFactor;</div><div class="line">        CGFloat scaledHeight = height * scaleFactor;</div><div class="line">        CGSize  targetSize = CGSizeMake(scaledWidth,scaledHeight);</div><div class="line"></div><div class="line">        UIGraphicsBeginImageContext(targetSize);</div><div class="line">        [image drawInRect:CGRectMake(0,0,targetSize.width,targetSize.height)];</div><div class="line">        newImage = UIGraphicsGetImageFromCurrentImageContext();</div><div class="line">        UIGraphicsEndImageContext();</div><div class="line">    &#125;</div><div class="line">    return newImage;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://he8090.cn/2017/06/05/swift实现手势解锁绘制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1536,143 +1807,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2017/03/28/WKWebView-webkit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headerImage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="罗尧’s Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/28/WKWebView-webkit/" itemprop="url">WKWebView+webkit</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T09:45:04+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术分享/" itemprop="url" rel="index">
-                    <span itemprop="name">技术分享</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>近年来由于混合编程的发展趋势，越来越多的企业选择通过Native + Hybrid方式来减轻开发压力和减少开发成本 。 iOS8以后，Apple新推出了WKWebview来替换UIWebView。</p>
-<p>WKWebview通过WKWebViewConfiguration注册可以被Js调用的方法。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">WKWebViewConfiguration</span> *configuration = [[<span class="built_in">WKWebViewConfiguration</span> alloc] init];</div><div class="line">configuration.userContentController = [<span class="built_in">WKUserContentController</span> new];</div><div class="line">[configuration.userContentController addScriptMessageHandler:<span class="keyword">self</span> name:<span class="string">@"setUserInfo"</span>];</div><div class="line">[configuration.userContentController addScriptMessageHandler:<span class="keyword">self</span> name:<span class="string">@"copyToClipboard"</span>];</div><div class="line">[configuration.userContentController addScriptMessageHandler:<span class="keyword">self</span> name:<span class="string">@"alertScanView"</span>];</div></pre></td></tr></table></figure></p>
-<p>同时在代理WKScriptMessageHandler中获取Js调用的方法名字<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)userContentController:(<span class="built_in">WKUserContentController</span> *)userContentController didReceiveScriptMessage:(<span class="built_in">WKScriptMessage</span> *)message&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Native调用Js  （使用字符串拼接Js代码串）<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *action = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@('%@','')"</span>,actionName,result];</div><div class="line">[<span class="keyword">self</span>.webView evaluateJavaScript:action completionHandler:^(<span class="keyword">id</span> _Nullable obj, <span class="built_in">NSError</span> * _Nullable error) &#123;      </div><div class="line">&#125;];</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1722,7 +1856,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1744,7 +1878,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
