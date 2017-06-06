@@ -274,149 +274,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2017/12/26/集成科大讯飞语音听写，使用writeAudio接口写入/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="he8090-yao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headerImage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="罗尧’s Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/26/集成科大讯飞语音听写，使用writeAudio接口写入/" itemprop="url">集成科大讯飞语音听写（writeAudio）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-26T09:45:22+08:00">
-                2017-12-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术分享/" itemprop="url" rel="index">
-                    <span itemprop="name">技术分享</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>简书博客上也有发布：<a href="http://www.jianshu.com/p/228a4d57bbc7" target="_blank" rel="external">http://www.jianshu.com/p/228a4d57bbc7</a></p>
-</blockquote>
-<p>本次主要对科大讯飞语音听写进行集成，需要到科大讯飞开放平台注册账号获得appid和下载对应的SDK。</p>
-<p>我使用的是语音听写。以下内容在科大讯飞官方文档中均有体现，如有疑问可以回复我。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, strong) IFlySpeechRecognizer *iFlySpeechRecognizer;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//初始化语音识别事件</div><div class="line">_iFlySpeechRecognizer = [IFlySpeechRecognizer sharedInstance];</div><div class="line">        _iFlySpeechRecognizer.delegate = self;</div><div class="line">        IATConfig *instance = [IATConfig sharedInstance];</div><div class="line">        //设置听写模式</div><div class="line">        [_iFlySpeechRecognizer setParameter:@&quot;iat&quot; forKey:[IFlySpeechConstant IFLY_DOMAIN]];</div><div class="line">        [_iFlySpeechRecognizer setParameter:instance.speechTimeout forKey:[IFlySpeechConstant SPEECH_TIMEOUT]];</div><div class="line">        [_iFlySpeechRecognizer setParameter:instance.vadEos forKey:[IFlySpeechConstant VAD_EOS]];</div><div class="line">        [_iFlySpeechRecognizer setParameter:instance.vadBos forKey:[IFlySpeechConstant VAD_BOS]];</div><div class="line">        [_iFlySpeechRecognizer setParameter:instance.netTimeout forKey:[IFlySpeechConstant NET_TIMEOUT]];</div><div class="line">        [_iFlySpeechRecognizer setParameter:instance.sampleRate forKey:[IFlySpeechConstant SAMPLE_RATE]];</div><div class="line">        [_iFlySpeechRecognizer setParameter:instance.language forKey:[IFlySpeechConstant LANGUAGE]];</div><div class="line">        [_iFlySpeechRecognizer setParameter:instance.accent forKey:[IFlySpeechConstant ACCENT_MANDARIN]];</div><div class="line">        [_iFlySpeechRecognizer setParameter:instance.dot forKey:[IFlySpeechConstant ASR_PTT]];</div><div class="line">        [_iFlySpeechRecognizer setParameter:@&quot;json&quot; forKey:[IFlySpeechConstant RESULT_TYPE]];</div><div class="line">        [_iFlySpeechRecognizer setParameter:@&quot;-1&quot; forKey:[IFlySpeechConstant AUDIO_SOURCE]];</div></pre></td></tr></table></figure>
-<p>使用writeAudio接口方式写入语音data<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//writeAudio接口对录音参数有要求，最好采样率为16K，8K也可以。</div><div class="line">[self.iFlySpeechRecognizer writeAudio:audioData];</div></pre></td></tr></table></figure></p>
-<p>识别结果回调 IFlySpeechRecognizerDelegate<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">#pragma mark - IFlySpeechRecognizerDelegate</div><div class="line">//识别结果返回</div><div class="line">- (void) onResults:(NSArray *) results isLast:(BOOL)isLast&#123;</div><div class="line"></div><div class="line">    NSMutableString *resultString = [[NSMutableString alloc] init];</div><div class="line">    NSDictionary *dic = results[0];</div><div class="line"></div><div class="line">    for (NSString *key in dic) &#123;</div><div class="line">        [resultString appendFormat:@&quot;%@&quot;,key];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    if (self.delegate &amp;&amp; [self.delegate respondsToSelector:@selector(iflyResult:islast:)]) &#123;</div><div class="line">        [self.delegate iflyResult:[ISRDataHelper stringFromJson:resultString] islast:isLast];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    if (isLast) &#123;</div><div class="line">        [self.iFlySpeechRecognizer cancel];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//识别会话结束返回</div><div class="line">- (void)onError: (IFlySpeechError *) error&#123;</div><div class="line">    //正常结束</div><div class="line">    if (error.errorCode == 0) &#123;</div><div class="line">        [self.iFlySpeechRecognizer startListening];</div><div class="line">    &#125;else&#123;</div><div class="line">        //异常通知</div><div class="line">        NSDictionary *dic = @&#123;@&quot;errorCode&quot;:@(error.errorCode),@&quot;description&quot;:error.description&#125;;</div><div class="line">        [[NSNotificationCenter defaultCenter] postNotificationName:@&quot;iflyonerror&quot; object:nil userInfo:dic];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//本次会话完成</div><div class="line">- (void) onCancel&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>本文只是简单摘取了大部分代码，科大讯飞语音听写的逻辑实现其实很简单，主要是在后期结合自己实际情况的匹配和逻辑延伸需要消化。</p>
-<p>附：录音参数设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">NSDictionary *recordSetting = [NSDictionary dictionaryWithObjectsAndKeys:</div><div class="line">                                   [NSNumber numberWithInt:AVAudioQualityHigh],AVEncoderAudioQualityKey,</div><div class="line">                                   [NSNumber numberWithInt:16],AVEncoderBitRateKey,</div><div class="line">                                   [NSNumber numberWithInt:1],AVNumberOfChannelsKey,</div><div class="line">                                   [NSNumber numberWithFloat:16000.0],AVSampleRateKey,</div><div class="line">                                   [NSNumber numberWithInt:kAudioFormatLinearPCM],AVFormatIDKey,</div><div class="line">                                   nil];</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://he8090.cn/2017/06/05/swift实现手势解锁绘制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1645,6 +1502,143 @@
 <p>2、耳机控制键</p>
 <p>首先允许远程控制<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[<span class="built_in">UIApplication</span> sharedApplication] beginReceivingRemoteControlEvents];</div></pre></td></tr></table></figure></p>
 <p>实现<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//received remote event</span></div><div class="line">-(<span class="keyword">void</span>)remoteControlReceivedWithEvent:(<span class="built_in">UIEvent</span> *)event&#123;</div><div class="line"><span class="keyword">if</span> (event.type == <span class="built_in">UIEventTypeRemoteControl</span>) &#123;</div><div class="line"><span class="keyword">switch</span> (event.subtype) &#123;</div><div class="line"></div><div class="line"><span class="keyword">case</span> <span class="built_in">UIEventSubtypeRemoteControlPlay</span>:&#123;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"play---------"</span>);</div><div class="line">&#125;<span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> <span class="built_in">UIEventSubtypeRemoteControlPause</span>:&#123;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"Pause---------"</span>);</div><div class="line">&#125;<span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> <span class="built_in">UIEventSubtypeRemoteControlStop</span>:&#123;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"Stop---------"</span>);</div><div class="line">&#125;<span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> <span class="built_in">UIEventSubtypeRemoteControlTogglePlayPause</span>:&#123;</div><div class="line"><span class="comment">//单击暂停键：103</span></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"单击暂停键：103"</span>);</div><div class="line">&#125;<span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> <span class="built_in">UIEventSubtypeRemoteControlNextTrack</span>:&#123;</div><div class="line"><span class="comment">//双击暂停键：104</span></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"双击暂停键：104"</span>);</div><div class="line">&#125;<span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> <span class="built_in">UIEventSubtypeRemoteControlPreviousTrack</span>:&#123;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"三击暂停键：105"</span>);</div><div class="line">&#125;<span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> <span class="built_in">UIEventSubtypeRemoteControlBeginSeekingForward</span>:&#123;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"单击，再按下不放：108"</span>);</div><div class="line">&#125;<span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> <span class="built_in">UIEventSubtypeRemoteControlEndSeekingForward</span>:&#123;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"单击，再按下不放，松开时：109"</span>);</div><div class="line">&#125;<span class="keyword">break</span>;</div><div class="line"><span class="keyword">default</span>:</div><div class="line"><span class="keyword">break</span>;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2017/03/28/WKWebView-webkit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="he8090-yao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headerImage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="罗尧’s Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/28/WKWebView-webkit/" itemprop="url">WKWebView+webkit</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T09:45:04+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术分享/" itemprop="url" rel="index">
+                    <span itemprop="name">技术分享</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>近年来由于混合编程的发展趋势，越来越多的企业选择通过Native + Hybrid方式来减轻开发压力和减少开发成本 。 iOS8以后，Apple新推出了WKWebview来替换UIWebView。</p>
+<p>WKWebview通过WKWebViewConfiguration注册可以被Js调用的方法。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">WKWebViewConfiguration</span> *configuration = [[<span class="built_in">WKWebViewConfiguration</span> alloc] init];</div><div class="line">configuration.userContentController = [<span class="built_in">WKUserContentController</span> new];</div><div class="line">[configuration.userContentController addScriptMessageHandler:<span class="keyword">self</span> name:<span class="string">@"setUserInfo"</span>];</div><div class="line">[configuration.userContentController addScriptMessageHandler:<span class="keyword">self</span> name:<span class="string">@"copyToClipboard"</span>];</div><div class="line">[configuration.userContentController addScriptMessageHandler:<span class="keyword">self</span> name:<span class="string">@"alertScanView"</span>];</div></pre></td></tr></table></figure></p>
+<p>同时在代理WKScriptMessageHandler中获取Js调用的方法名字<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)userContentController:(<span class="built_in">WKUserContentController</span> *)userContentController didReceiveScriptMessage:(<span class="built_in">WKScriptMessage</span> *)message&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Native调用Js  （使用字符串拼接Js代码串）<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *action = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@('%@','')"</span>,actionName,result];</div><div class="line">[<span class="keyword">self</span>.webView evaluateJavaScript:action completionHandler:^(<span class="keyword">id</span> _Nullable obj, <span class="built_in">NSError</span> * _Nullable error) &#123;      </div><div class="line">&#125;];</div></pre></td></tr></table></figure></p>
 
           
         
