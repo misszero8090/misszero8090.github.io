@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。 目录   UIGraphicsBeginImageContext消除锯齿 UIbutton图片和文字默认偏移（上下） 判断设置是否越狱 判断是否是数字 判断是否是字符（a-z） 获取当前任务占用的内存 获取中英文混合字符串的长度 获取字节长度 获取app的沙盒路径 为Button绘制背">
+<meta name="description" content="本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。 目录   UIGraphicsBeginImageContext消除锯齿 iOS线程 UIbutton图片和文字默认偏移（上下） 判断设置是否越狱 判断是否是数字 判断是否是字符（a-z） 获取当前任务占用的内存 获取中英文混合字符串的长度 获取字节长度 获取app的沙盒路径 为But">
 <meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发中工具类（方法）">
 <meta property="og:url" content="http://he8090.cn/2017/06/06/iOS开发中工具类（方法）/index.html">
 <meta property="og:site_name" content="罗尧’s Notes">
-<meta property="og:description" content="本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。 目录   UIGraphicsBeginImageContext消除锯齿 UIbutton图片和文字默认偏移（上下） 判断设置是否越狱 判断是否是数字 判断是否是字符（a-z） 获取当前任务占用的内存 获取中英文混合字符串的长度 获取字节长度 获取app的沙盒路径 为Button绘制背">
-<meta property="og:updated_time" content="2017-06-13T02:57:20.000Z">
+<meta property="og:description" content="本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。 目录   UIGraphicsBeginImageContext消除锯齿 iOS线程 UIbutton图片和文字默认偏移（上下） 判断设置是否越狱 判断是否是数字 判断是否是字符（a-z） 获取当前任务占用的内存 获取中英文混合字符串的长度 获取字节长度 获取app的沙盒路径 为But">
+<meta property="og:updated_time" content="2017-06-13T03:04:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发中工具类（方法）">
-<meta name="twitter:description" content="本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。 目录   UIGraphicsBeginImageContext消除锯齿 UIbutton图片和文字默认偏移（上下） 判断设置是否越狱 判断是否是数字 判断是否是字符（a-z） 获取当前任务占用的内存 获取中英文混合字符串的长度 获取字节长度 获取app的沙盒路径 为Button绘制背">
+<meta name="twitter:description" content="本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。 目录   UIGraphicsBeginImageContext消除锯齿 iOS线程 UIbutton图片和文字默认偏移（上下） 判断设置是否越狱 判断是否是数字 判断是否是字符（a-z） 获取当前任务占用的内存 获取中英文混合字符串的长度 获取字节长度 获取app的沙盒路径 为But">
 
 
 
@@ -379,6 +379,7 @@
 </blockquote>
 <ul>
 <li>UIGraphicsBeginImageContext消除锯齿</li>
+<li>iOS线程</li>
 <li>UIbutton图片和文字默认偏移（上下）</li>
 <li>判断设置是否越狱</li>
 <li>判断是否是数字</li>
@@ -414,6 +415,20 @@
 <li>UIGraphicsBeginImageContext消除锯齿<br>最近在做连线的时候发现，斜线会有锯齿存在。查阅资料发现是像素点原因引起，以下只是简单解决的一种方式，有一定效果但不全面。仅做记录。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//方法1</div><div class="line">view.layer.contentsScale = [[UIScreen mainScreen] scale];</div><div class="line"></div><div class="line">//方法2</div><div class="line">CGContextRef context = UIGraphicsGetCurrentContext();</div><div class="line">CGContextSetAllowsAntialiasing(context,true);//开启自动去锯齿</div><div class="line">CGContextSetShouldAntialias(context, true);</div></pre></td></tr></table></figure>
+<ul>
+<li>iOS线程<blockquote>
+<p>一般来说，队列可分为两种类型：串行和并行。也可以分为系统队列和用户队列两种</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>串行：<br>dispatch_get_main_queue() 主线程队列，在主线程中执行<br>dispatch_queue_create(DISPATCH_QUEUE_SERIAL) 自定义串行队列<br>并行：<br>dispatch_get_global_queue() 由系统维护的并行队列<br>dispatch_queue_create(DISPATCH_QUEUE_CONCURRENT) 自定义并发队列</p>
+<p>This function is the fundamental mechanism for submitting blocks to a dispatch queue. Calls to this function always return immediately after the block has been submitted and never wait for the block to be invoked. The target queue determines whether the block is invoked serially or concurrently with respect to other blocks submitted to that same queue. Independent serial queues are processed concurrently with respect to each other.</p>
+<p>该函数为向dispatch队列中提交block对象的最基础的机制。调用这个接口后将block提交后会马上返回，并不会等待block被调用。参数queue决定block对象是被串行执行还是并行执行。不同的串行队列将被并行处理。</p>
+</blockquote>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//在主线程执行一个block</div><div class="line">  dispatch_async(dispatch_get_main_queue(), ^&#123;</div><div class="line">      NSLog(@&quot;invoke in main thread.&quot;);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">  //异步执行一个block</div><div class="line">dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</div><div class="line">        NSLog(@&quot;invoke in another thread which is in system thread pool.&quot;);</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
 <ul>
 <li>UIbutton图片和文字默认偏移（上下）<br>注意：传入需要设置的Button和文字和图片之间的垂直距离即可。</li>
 </ul>
