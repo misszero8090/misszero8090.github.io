@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。 目录   UIbutton图片和文字默认偏移（上下） 判断设置是否越狱 判断是否是数字 判断是否是字符（a-z） 获取当前任务占用的内存 获取中英文混合字符串的长度 获取字节长度 获取app的沙盒路径 为Button绘制背景图片 判断空字符串 判断单个文件大小 获取视频第一帧 获取系统">
+<meta name="description" content="本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。 目录   UIGraphicsBeginImageContext消除锯齿 UIbutton图片和文字默认偏移（上下） 判断设置是否越狱 判断是否是数字 判断是否是字符（a-z） 获取当前任务占用的内存 获取中英文混合字符串的长度 获取字节长度 获取app的沙盒路径 为Button绘制背">
 <meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发中工具类（方法）">
 <meta property="og:url" content="http://he8090.cn/2017/06/06/iOS开发中工具类（方法）/index.html">
 <meta property="og:site_name" content="罗尧’s Notes">
-<meta property="og:description" content="本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。 目录   UIbutton图片和文字默认偏移（上下） 判断设置是否越狱 判断是否是数字 判断是否是字符（a-z） 获取当前任务占用的内存 获取中英文混合字符串的长度 获取字节长度 获取app的沙盒路径 为Button绘制背景图片 判断空字符串 判断单个文件大小 获取视频第一帧 获取系统">
-<meta property="og:updated_time" content="2017-06-06T08:34:21.000Z">
+<meta property="og:description" content="本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。 目录   UIGraphicsBeginImageContext消除锯齿 UIbutton图片和文字默认偏移（上下） 判断设置是否越狱 判断是否是数字 判断是否是字符（a-z） 获取当前任务占用的内存 获取中英文混合字符串的长度 获取字节长度 获取app的沙盒路径 为Button绘制背">
+<meta property="og:updated_time" content="2017-06-13T02:57:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发中工具类（方法）">
-<meta name="twitter:description" content="本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。 目录   UIbutton图片和文字默认偏移（上下） 判断设置是否越狱 判断是否是数字 判断是否是字符（a-z） 获取当前任务占用的内存 获取中英文混合字符串的长度 获取字节长度 获取app的沙盒路径 为Button绘制背景图片 判断空字符串 判断单个文件大小 获取视频第一帧 获取系统">
+<meta name="twitter:description" content="本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。 目录   UIGraphicsBeginImageContext消除锯齿 UIbutton图片和文字默认偏移（上下） 判断设置是否越狱 判断是否是数字 判断是否是字符（a-z） 获取当前任务占用的内存 获取中英文混合字符串的长度 获取字节长度 获取app的沙盒路径 为Button绘制背">
 
 
 
@@ -378,6 +378,7 @@
 <p>目录</p>
 </blockquote>
 <ul>
+<li>UIGraphicsBeginImageContext消除锯齿</li>
 <li>UIbutton图片和文字默认偏移（上下）</li>
 <li>判断设置是否越狱</li>
 <li>判断是否是数字</li>
@@ -409,6 +410,10 @@
 <li>MRC环境引入ARC文件，加入：<code>-fobjc-arc</code></li>
 </ul>
 <hr>
+<ul>
+<li>UIGraphicsBeginImageContext消除锯齿<br>最近在做连线的时候发现，斜线会有锯齿存在。查阅资料发现是像素点原因引起，以下只是简单解决的一种方式，有一定效果但不全面。仅做记录。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//方法1</div><div class="line">view.layer.contentsScale = [[UIScreen mainScreen] scale];</div><div class="line"></div><div class="line">//方法2</div><div class="line">CGContextRef context = UIGraphicsGetCurrentContext();</div><div class="line">CGContextSetAllowsAntialiasing(context,true);//开启自动去锯齿</div><div class="line">CGContextSetShouldAntialias(context, true);</div></pre></td></tr></table></figure>
 <ul>
 <li>UIbutton图片和文字默认偏移（上下）<br>注意：传入需要设置的Button和文字和图片之间的垂直距离即可。</li>
 </ul>
