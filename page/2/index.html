@@ -245,6 +245,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
 
       
     </ul>
@@ -264,148 +274,6 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2017/05/23/在swift中使用OC编写的FrameWork库/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headerImage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="靠北’s Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/23/在swift中使用OC编写的FrameWork库/" itemprop="url">在swift中使用OC编写的FrameWork库</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-23T11:16:25+08:00">
-                2017-05-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术分享/" itemprop="url" rel="index">
-                    <span itemprop="name">技术分享</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>近来有时间可以看下swift3自己抽时间写了小demo，总体来说swift语言确实言简意赅，抛弃了OC中许多复杂的写法，一下子简便起来还不是很适应。</p>
-<p>说到iOS开发就离不开三方库的支持，有一些开源和闭源的SDK使用。</p>
-<p>1、集成OC的frameWork需要在swift工程中新建一个用于桥接的 .h 文件 桥接文件中 #import&lt;&gt;相应的文件或者库。</p>
-<p>2、新建完成之后，在TAGETS - building setting - 搜索（bri）-Objective-C  bridging Heather - （添加新建的.h桥接文件，建议使用相对路径$(SRCROOT)）</p>
-<p>3、导入framework依赖的其他库。</p>
-<p>4、Command + b编译运行ok。</p>
-<p>5、在swift中可以直接使用。Apple会自动将object - c转为swift。</p>
-<p>注：有时候会报莫名的错误，建议检查导入的framework或者.a文件是否包含在工程中，必须是物理包含而不是逻辑包含（也许描述不准确哈）。</p>
-<p>示例：在 XXX+bridging+Header.h文件中<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;BmobSDK/Bmob.h&gt;</span></span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
       
 
@@ -1652,6 +1520,142 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2016/09/01/iOS集成ShareSDK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headerImage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="靠北’s Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/01/iOS集成ShareSDK/" itemprop="url">iOS集成ShareSDK</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-01T15:55:39+08:00">
+                2016-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术分享/" itemprop="url" rel="index">
+                    <span itemprop="name">技术分享</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1、到ShareSDK官网（<a href="http://www.mob.com/#/download）下载SDK，注册appkey。" target="_blank" rel="external">http://www.mob.com/#/download）下载SDK，注册appkey。</a><br>2、将ShareSDK拖到工程。（也可以使用cocopods管理）<br>3、在APPDelegate.m<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;ShareSDK/ShareSDK.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;ShareSDKConnector/ShareSDKConnector.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;TencentOpenAPI/TencentOAuth.h&gt;</span>//腾讯</span></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;TencentOpenAPI/QQApiInterface.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"WXApi.h"</span>//微信</span></div><div class="line"><span class="meta">#import <span class="meta-string">"WeiboSDK.h"</span>//新浪微博</span></div></pre></td></tr></table></figure></p>
+<p>4、在  AppDelegate.m 中<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions ；</div></pre></td></tr></table></figure><br>方法中注册ShareSDK。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)configShareSDK</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">[ShareSDK registerApp:<span class="string">@"ShareSDK注册的appKey"</span> activePlatforms:@[</div><div class="line"></div><div class="line">@(SSDKPlatformTypeSinaWeibo),</div><div class="line"></div><div class="line">@(SSDKPlatformTypeWechat),<span class="comment">//这里可以根据实际情况选择微信好友，朋友圈等</span></div><div class="line"></div><div class="line">@(SSDKPlatformTypeQQ)]<span class="comment">//这里同上</span></div><div class="line"></div><div class="line">onImport:^(SSDKPlatformType platformType) &#123;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">switch</span> (platformType)<span class="comment">//与activePlatforms中注册的一致</span></div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line"><span class="keyword">case</span> SSDKPlatformTypeWechat:</div><div class="line"></div><div class="line">[ShareSDKConnector connectWeChat:[WXApi <span class="keyword">class</span>]];</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">case</span> SSDKPlatformTypeQQ:</div><div class="line"></div><div class="line">[ShareSDKConnector connectQQ:[QQApiInterface <span class="keyword">class</span>] tencentOAuthClass:[TencentOAuth <span class="keyword">class</span>]];</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">case</span> SSDKPlatformTypeSinaWeibo:</div><div class="line"></div><div class="line">[ShareSDKConnector connectWeibo:[WeiboSDK <span class="keyword">class</span>]];</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">default</span>:</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125; onConfiguration:^(SSDKPlatformType platformType, <span class="built_in">NSMutableDictionary</span> *appInfo) &#123;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">switch</span> (platformType)</div><div class="line"><span class="comment">//与activePlatforms中注册的一致</span></div><div class="line">&#123;</div><div class="line"></div><div class="line"><span class="keyword">case</span> SSDKPlatformTypeSinaWeibo:</div><div class="line"></div><div class="line">[appInfo SSDKSetupSinaWeiboByAppKey:<span class="string">@"sinaWeibo注册的appkey"</span></div><div class="line"></div><div class="line">appSecret:<span class="string">@"密钥"</span></div><div class="line"></div><div class="line">redirectUri:<span class="string">@"http://www.sharesdk.cn"</span></div><div class="line"></div><div class="line">authType:SSDKAuthTypeBoth];</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">case</span> SSDKPlatformTypeWechat:</div><div class="line"></div><div class="line">[appInfo SSDKSetupWeChatByAppId:<span class="string">@"微信注册的appid"</span></div><div class="line"></div><div class="line">appSecret:<span class="string">@"密钥"</span>];</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">case</span> SSDKPlatformTypeQQ:</div><div class="line"></div><div class="line">[appInfo SSDKSetupQQByAppId:<span class="string">@"腾讯QQ注册的appid"</span></div><div class="line"></div><div class="line">appKey:<span class="string">@"腾讯QQ注册的appkey"</span></div><div class="line"></div><div class="line">authType:SSDKAuthTypeBoth];</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">default</span>:</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;];</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure><br>注：1、所需的相关配置及代码在对应的开放平台上注册成为开发者。</p>
+<p>5、使用ShareSDK分享<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">IBAction</span>)clickShareBtn:(<span class="built_in">UIButton</span> *)sender &#123;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">NSArray</span>* imageArray = @[[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"分享显示的图片（一般使用app的Icon）"</span>]];</div><div class="line"></div><div class="line"><span class="built_in">NSString</span> *htmlTitle = <span class="string">@"分享内容"</span>;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (!htmlTitle) &#123;</div><div class="line"></div><div class="line">htmlTitle = <span class="string">@""</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">NSMutableDictionary</span> *shareParams = [<span class="built_in">NSMutableDictionary</span> dictionary];</div><div class="line"></div><div class="line">[shareParams SSDKSetupShareParamsByText:<span class="literal">nil</span></div><div class="line"></div><div class="line">images:imageArray</div><div class="line"></div><div class="line">url:[<span class="built_in">NSURL</span> URLWithString:<span class="keyword">self</span>.urlStr]</div><div class="line"></div><div class="line">title:htmlTitle</div><div class="line"></div><div class="line">type:SSDKContentTypeAuto];</div><div class="line"></div><div class="line">[ShareSDK showShareActionSheet:<span class="literal">nil</span> items:<span class="literal">nil</span> shareParams:shareParams onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, <span class="built_in">NSDictionary</span> *userData, SSDKContentEntity *contentEntity, <span class="built_in">NSError</span> *error, <span class="built_in">BOOL</span> end) &#123;</div><div class="line"></div><div class="line"><span class="comment">//回调方法中会走成功或失败，监听分享状态可以在这里操作。</span></div><div class="line"></div><div class="line">&#125;];</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure><br>end：更多配置可以参考<a href="http://wiki.mob.com/ios简洁版快速集成/#h1-0" target="_blank" rel="external">http://wiki.mob.com/ios简洁版快速集成/#h1-0</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1701,7 +1705,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1712,7 +1716,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
