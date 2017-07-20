@@ -894,6 +894,7 @@
 <p>目录</p>
 </blockquote>
 <ul>
+<li>使用Reachability监测网络环境</li>
 <li>UIGraphicsBeginImageContext消除锯齿</li>
 <li>iOS线程</li>
 <li>UIbutton图片和文字默认偏移（上下）</li>
@@ -927,6 +928,14 @@
 <li>ARC环境中引入MRC文件  加入<code>-fno-objc-arc</code><br></li>
 <li>MRC环境引入ARC文件，加入：<code>-fobjc-arc</code></li>
 </ul>
+<hr>
+<ul>
+<li>使用Reachability监测网络环境</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">//注册通知、开启网络状况的监听</div><div class="line">    [[NSNotificationCenter defaultCenter] addObserver:self</div><div class="line">                                             selector:@selector(reachabilityChanged:)</div><div class="line">                                                 name:kReachabilityChangedNotification</div><div class="line">                                               object:nil];</div><div class="line"></div><div class="line">//通知接收方法</div><div class="line">-(void)reachabilityChanged:(NSNotification*)note</div><div class="line">&#123;</div><div class="line">    Reachability * reach = [note object];</div><div class="line">    NSParameterAssert([reach isKindOfClass: [Reachability class]]);</div><div class="line">    NetworkStatus status = [reach currentReachabilityStatus];</div><div class="line"></div><div class="line">    if (status == NotReachable) &#123;</div><div class="line">        NSLog(@&quot;Notification Says Unreachable&quot;);</div><div class="line">    &#125;else if(status == ReachableViaWWAN)&#123;</div><div class="line">        NSLog(@&quot;Notification Says mobilenet&quot;);</div><div class="line">    &#125;else if(status == ReachableViaWiFi)&#123;</div><div class="line">        NSLog(@&quot;Notification Says wifinet&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>需要导入 Reachability.h 和Reachability.m文件。下载地址：<a href="https://developer.apple.com/library/ios/samplecode/Reachability/Reachability.zip" target="_blank" rel="external">https://developer.apple.com/library/ios/samplecode/Reachability/Reachability.zip</a></p>
+</blockquote>
 <hr>
 <ul>
 <li>UIGraphicsBeginImageContext消除锯齿<br>最近在做连线的时候发现，斜线会有锯齿存在。查阅资料发现是像素点原因引起，以下只是简单解决的一种方式，有一定效果但不全面。仅做记录。</li>
