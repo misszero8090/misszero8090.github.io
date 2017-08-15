@@ -1031,6 +1031,8 @@
 <p>目录</p>
 </blockquote>
 <ul>
+<li>判断字符串是否为IP地址</li>
+<li>获取设备在局域网中的IP地址</li>
 <li>使用Reachability监测网络环境</li>
 <li>UIGraphicsBeginImageContext消除锯齿</li>
 <li>iOS线程</li>
@@ -1057,6 +1059,16 @@
 <li>按尺寸压缩图片</li>
 <li>UIImage两种加载方式比较</li>
 </ul>
+<hr>
+<ul>
+<li>判断字符串是否是IP地址</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//判断是否是IP地址</div><div class="line">- (BOOL)isValidatIP:(NSString *)ipAddress&#123;</div><div class="line"></div><div class="line">    NSString  *urlRegEx =@&quot;^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.&quot;</div><div class="line">    &quot;([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.&quot;</div><div class="line">    &quot;([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.&quot;</div><div class="line">    &quot;([01]?\\d\\d?|2[0-4]\\d|25[0-5])$&quot;;</div><div class="line"></div><div class="line">    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@&quot;SELF MATCHES %@&quot;, urlRegEx];</div><div class="line">    return [urlTest evaluateWithObject:ipAddress];</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>获取设备在局域网中的IP地址</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">//获取局域网IP</div><div class="line">- (NSString *)deviceIPAdress &#123;</div><div class="line">    NSString *address = @&quot;手机移动网络&quot;;</div><div class="line">    struct ifaddrs *interfaces = NULL;</div><div class="line">    struct ifaddrs *temp_addr = NULL;</div><div class="line">    int success = 0;</div><div class="line"></div><div class="line">    success = getifaddrs(&amp;interfaces);</div><div class="line">    if (success == 0) &#123;</div><div class="line">        temp_addr = interfaces;</div><div class="line">        while (temp_addr != NULL) &#123;</div><div class="line">            if( (*temp_addr).ifa_addr-&gt;sa_family == AF_INET) &#123;</div><div class="line">                if ([[NSString stringWithUTF8String:temp_addr-&gt;ifa_name] isEqualToString:@&quot;en0&quot;]) &#123;</div><div class="line">                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr-&gt;ifa_addr)-&gt;sin_addr)];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            temp_addr = temp_addr-&gt;ifa_next;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    freeifaddrs(interfaces);</div><div class="line">    return address;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
 <blockquote>
 <p>ARC &amp;&amp; MRC 使用</p>
