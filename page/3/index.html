@@ -245,16 +245,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
 
       
     </ul>
@@ -284,7 +274,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2016/12/07/iOS工程之间依赖/">
+    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2017/06/13/python网络爬虫/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yao">
@@ -303,7 +293,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/12/07/iOS工程之间依赖/" itemprop="url">iOS工程之间依赖</a></h1>
+                <a class="post-title-link" href="/2017/06/13/python网络爬虫/" itemprop="url">python网络爬虫</a></h1>
         
 
         <div class="post-meta">
@@ -315,8 +305,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-07T09:52:22+08:00">
-                2016-12-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-13T14:28:07+08:00">
+                2017-06-13
               </time>
             
 
@@ -374,10 +364,16 @@
       
         
           
-            <p>在开发过程中公司采用的是SDK化，对基础和同样的功能进行封装为.a静态库，在使用时通过工程依赖的方式直接引用.a的这个工程，有时候会出现许多问题。</p>
-<p>1、为了让引入的工程的文件编译和新的工程文件之间不产生冲突，需要注意别在Framework Search Paths中去添加依赖路径。<br>2、为了直接使用引入工程的文件可以在Framework Search Paths中添加<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(PROJECT_DIR)/实体工程路径名/实体.a文件名</div></pre></td></tr></table></figure><br>3、Header Seach Paths路径添加<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">"$(SRCROOT)/实体.a工程路径名/实体.a工程路径名/"</span></div><div class="line"><span class="string">"$&#123;TARGET_BUILD_DIR)/.a工程名"</span></div></pre></td></tr></table></figure></p>
-
           
+最近在简书上浏览博客时发现有人用爬虫历时30个小时拿到简书大约30万用户的活跃情况，我大为吃惊呀。先前也了解了一下关于爬虫方面的东西，但过于零碎没有形成系统体系。今日我新增这篇博客来记录我学习爬虫已经应用Python编写简单爬虫的过程和个人的一些总结，仅供大家参考，同时发布在简书平台上。我的用户名
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/13/python网络爬虫/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -419,7 +415,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2016/10/31/iOS中FMDatabase应用/">
+    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2017/06/06/iOS开发中工具类（方法）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yao">
@@ -438,7 +434,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/10/31/iOS中FMDatabase应用/" itemprop="url">iOS中FMDatabase应用</a></h1>
+                <a class="post-title-link" href="/2017/06/06/iOS开发中工具类（方法）/" itemprop="url">iOS开发中工具类（方法）</a></h1>
         
 
         <div class="post-meta">
@@ -450,8 +446,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-31T15:56:15+08:00">
-                2016-10-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-06T16:04:47+08:00">
+                2017-06-06
               </time>
             
 
@@ -509,14 +505,25 @@
       
         
           
-            <blockquote>
-<p>使用FMDatabase库管理sqlite3数据库。<br><br> 步骤如下：</p>
-</blockquote>
-<p>1、创建本地DB<br>（1）DB.h<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;FMDatabase.h&quot;</div><div class="line">#import &quot;FMDatabaseQueue.h&quot;</div><div class="line">#import &quot;LX_Singleton.h&quot;</div><div class="line">#define LXDAO [LX_Dao sharedInstance]</div><div class="line">typedef void (^DatabaseBlock)(FMDatabase *db);</div><div class="line">typedef void (^TransactionBlock)(FMDatabase *db, BOOL *rollback);</div><div class="line">@interface LX_Dao : NSObject</div><div class="line">AS_SINGLETON(LX_Dao);</div><div class="line">- (void)inDatabase:(DatabaseBlock)block;</div><div class="line">- (void)inTransaction:(TransactionBlock)block;</div><div class="line">@end</div></pre></td></tr></table></figure></p>
-<p>（2）DB.m（注意数据库存储路径）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">#import &quot;LX_Dao.h&quot;</div><div class="line">static FMDatabaseQueue *dbQueue;</div><div class="line">@implementation LX_Dao</div><div class="line">DEF_SINGLETON(LX_Dao);</div><div class="line">- (id)init</div><div class="line">&#123;</div><div class="line">    self = [super init];</div><div class="line">    if (self) &#123;</div><div class="line">        if (dbQueue == nil) &#123;</div><div class="line">            NSString *filePath = [[LX_Sandbox docPath] stringByAppendingPathComponent:@&quot;linxunDb.db&quot;];</div><div class="line">            dbQueue = [[FMDatabaseQueue alloc] initWithPath:filePath];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line">- (void)inDatabase:(DatabaseBlock)block&#123;</div><div class="line">    if (!block) &#123;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    [dbQueue inDatabase:^(FMDatabase *db) &#123;</div><div class="line">        [db setTraceExecution:YES];</div><div class="line">        block(db);</div><div class="line">    &#125;];</div><div class="line">&#125;</div><div class="line">- (void)inTransaction:(TransactionBlock)block&#123;</div><div class="line">    if (!block) &#123;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    [dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) &#123;</div><div class="line">        [db setTraceExecution:YES];</div><div class="line">        block(db,rollback);</div><div class="line">        if (*rollback == YES) &#123;</div><div class="line">            LX_DLog(@&quot;数据库出错---&gt;error:%@&quot;,[db lastErrorMessage]);</div><div class="line">        &#125;</div><div class="line">    &#125;];</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure></p>
-<p>2、操作数据库（创建表，添加，删除，查询，修改）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">- (void)createGroupListTable</div><div class="line">&#123;</div><div class="line">    __block BOOL success = YES;</div><div class="line">    [self inTransaction:^(FMDatabase *db, BOOL *rollback) &#123;</div><div class="line"></div><div class="line">        success = [db executeUpdate:@&quot;CREATE TABLE if not exists group_list_table (_id integer not null primary key autoincrement, group_id text not null, group_name text not null, group_avatar text, create_time text not null, creator_id text not null)&quot;];</div><div class="line">        if (!success) &#123;</div><div class="line"></div><div class="line">            *rollback = YES;</div><div class="line">        &#125;</div><div class="line">    &#125;];</div><div class="line">&#125;</div><div class="line">- (void)insertGroupWithModel:(GroupInfoModel *)model</div><div class="line">&#123;</div><div class="line">    __block BOOL success = YES;</div><div class="line">    [self inTransaction:^(FMDatabase *db, BOOL *rollback) &#123;</div><div class="line"></div><div class="line">        success = [db executeUpdate:@&quot;INSERT INTO group_list_table (group_id,group_name,group_avatar,create_time,creator_id) VALUES (?,?,?,?,?)&quot;, model.groupId, model.groupName, model.groupAvatar, model.createTime, model.creatorId];</div><div class="line">        if (!success) &#123;</div><div class="line"></div><div class="line">            *rollback = YES;</div><div class="line">        &#125;</div><div class="line">    &#125;];</div><div class="line">&#125;</div><div class="line">- (void)updateGroupNameWithGroupId:(NSString *)groupId groupName:(NSString *)groupName</div><div class="line">&#123;</div><div class="line">    __block BOOL success = YES;</div><div class="line">    [self inTransaction:^(FMDatabase *db, BOOL *rollback) &#123;</div><div class="line"></div><div class="line">        success = [db executeUpdate:@&quot;UPDATE group_list_table set group_name = ? where group_id = ?&quot;, groupName, groupId];</div><div class="line">        if (!success) &#123;</div><div class="line"></div><div class="line">            *rollback = YES;</div><div class="line">        &#125;</div><div class="line">    &#125;];</div><div class="line">&#125;</div><div class="line">- (void)updateGroupAvatarWithGroupId:(NSString *)groupId ImageStr:(NSString *)imageStr</div><div class="line">&#123;</div><div class="line">    __block BOOL success = YES;</div><div class="line">    [self inTransaction:^(FMDatabase *db, BOOL *rollback) &#123;</div><div class="line"></div><div class="line">        success = [db executeUpdate:@&quot;UPDATE group_list_table set group_avatar = ? where group_id = ?&quot;, imageStr, groupId];</div><div class="line">        if (!success) &#123;</div><div class="line"></div><div class="line">            *rollback = YES;</div><div class="line">        &#125;</div><div class="line">    &#125;];</div><div class="line">&#125;</div><div class="line">- (void)deleteGroupWithGroupId:(NSString *)groupId</div><div class="line">&#123;</div><div class="line">    __block BOOL success = YES;</div><div class="line">    [self inTransaction:^(FMDatabase *db, BOOL *rollback) &#123;</div><div class="line"></div><div class="line">        success = [db executeUpdate:@&quot;DELETE FROM group_list_table WHERE group_id = ? and creator_id = ?&quot;, groupId, USERID];</div><div class="line">        if (!success) &#123;</div><div class="line"></div><div class="line">            *rollback = YES;</div><div class="line">        &#125;</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
           
+本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。
+目录
+
+
+判断字符串是否为IP地址
+获取设备在局域网中的IP地址
+使用Reachability监测网络环境
+UIGraphicsBeginImageContext消除锯齿
+iOS线程
+U
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/06/iOS开发中工具类（方法）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -558,7 +565,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2016/10/29/xcode日志输出（区分真机和模拟器）/">
+    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2017/06/05/swift实现手势解锁绘制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yao">
@@ -577,7 +584,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/10/29/xcode日志输出（区分真机和模拟器）/" itemprop="url">xcode日志输出（区分真机和模拟器）</a></h1>
+                <a class="post-title-link" href="/2017/06/05/swift实现手势解锁绘制/" itemprop="url">iOS实现手势解锁绘制</a></h1>
         
 
         <div class="post-meta">
@@ -589,8 +596,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-29T10:01:20+08:00">
-                2016-10-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-05T17:52:30+08:00">
+                2017-06-05
               </time>
             
 
@@ -648,756 +655,21 @@
       
         
           
-            <blockquote>
-<p>日志输出在xcode开发过程中十分必要，这里总结和记录一下。</p>
-</blockquote>
-<p>1、日志打印（xcode8之后添加  OS_ACTIVITY_MODE     disable 字段真机模式下会被屏蔽所有日志，所以用2）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#ifdef DEBUG</div><div class="line"># define LX_DLog(fmt, ...) NSLog((@&quot;[文件名:%s]\\n&quot; &quot;[函数名:%s]\\n&quot; &quot;[行号:%d] \\n&quot; fmt), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__);</div><div class="line">#else</div><div class="line"># define LX_DLog(...);</div><div class="line">#define NSLog(...) &#123;&#125;</div><div class="line">#endif</div></pre></td></tr></table></figure></p>
-<p>2、真机日志<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#ifdef DEBUG</div><div class="line">#define LRString [NSString stringWithFormat:@&quot;%s&quot;, __FILE__].lastPathComponent</div><div class="line">#define LRLog(...) printf(&quot;%s: %s 第%d行: %s\\n\\n&quot;,[[NSString lr_stringDate] UTF8String], [LRString UTF8String] ,__LINE__, [[NSString stringWithFormat:__VA_ARGS__] UTF8String]);</div><div class="line">#else</div><div class="line">#define LRLog(...)</div><div class="line">#endif</div></pre></td></tr></table></figure></p>
-
           
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2016/09/01/iOS集成ShareSDK/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headerImage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="靠北’s Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/01/iOS集成ShareSDK/" itemprop="url">iOS集成ShareSDK</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-01T15:55:39+08:00">
-                2016-09-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术分享/" itemprop="url" rel="index">
-                    <span itemprop="name">技术分享</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1、到ShareSDK官网（<a href="http://www.mob.com/#/download）下载SDK，注册appkey。" target="_blank" rel="external">http://www.mob.com/#/download）下载SDK，注册appkey。</a><br>2、将ShareSDK拖到工程。（也可以使用cocopods管理）<br>3、在APPDelegate.m<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;ShareSDK/ShareSDK.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;ShareSDKConnector/ShareSDKConnector.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;TencentOpenAPI/TencentOAuth.h&gt;</span>//腾讯</span></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;TencentOpenAPI/QQApiInterface.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"WXApi.h"</span>//微信</span></div><div class="line"><span class="meta">#import <span class="meta-string">"WeiboSDK.h"</span>//新浪微博</span></div></pre></td></tr></table></figure></p>
-<p>4、在  AppDelegate.m 中<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions ；</div></pre></td></tr></table></figure><br>方法中注册ShareSDK。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)configShareSDK</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">[ShareSDK registerApp:<span class="string">@"ShareSDK注册的appKey"</span> activePlatforms:@[</div><div class="line"></div><div class="line">@(SSDKPlatformTypeSinaWeibo),</div><div class="line"></div><div class="line">@(SSDKPlatformTypeWechat),<span class="comment">//这里可以根据实际情况选择微信好友，朋友圈等</span></div><div class="line"></div><div class="line">@(SSDKPlatformTypeQQ)]<span class="comment">//这里同上</span></div><div class="line"></div><div class="line">onImport:^(SSDKPlatformType platformType) &#123;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">switch</span> (platformType)<span class="comment">//与activePlatforms中注册的一致</span></div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line"><span class="keyword">case</span> SSDKPlatformTypeWechat:</div><div class="line"></div><div class="line">[ShareSDKConnector connectWeChat:[WXApi <span class="keyword">class</span>]];</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">case</span> SSDKPlatformTypeQQ:</div><div class="line"></div><div class="line">[ShareSDKConnector connectQQ:[QQApiInterface <span class="keyword">class</span>] tencentOAuthClass:[TencentOAuth <span class="keyword">class</span>]];</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">case</span> SSDKPlatformTypeSinaWeibo:</div><div class="line"></div><div class="line">[ShareSDKConnector connectWeibo:[WeiboSDK <span class="keyword">class</span>]];</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">default</span>:</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125; onConfiguration:^(SSDKPlatformType platformType, <span class="built_in">NSMutableDictionary</span> *appInfo) &#123;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">switch</span> (platformType)</div><div class="line"><span class="comment">//与activePlatforms中注册的一致</span></div><div class="line">&#123;</div><div class="line"></div><div class="line"><span class="keyword">case</span> SSDKPlatformTypeSinaWeibo:</div><div class="line"></div><div class="line">[appInfo SSDKSetupSinaWeiboByAppKey:<span class="string">@"sinaWeibo注册的appkey"</span></div><div class="line"></div><div class="line">appSecret:<span class="string">@"密钥"</span></div><div class="line"></div><div class="line">redirectUri:<span class="string">@"http://www.sharesdk.cn"</span></div><div class="line"></div><div class="line">authType:SSDKAuthTypeBoth];</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">case</span> SSDKPlatformTypeWechat:</div><div class="line"></div><div class="line">[appInfo SSDKSetupWeChatByAppId:<span class="string">@"微信注册的appid"</span></div><div class="line"></div><div class="line">appSecret:<span class="string">@"密钥"</span>];</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">case</span> SSDKPlatformTypeQQ:</div><div class="line"></div><div class="line">[appInfo SSDKSetupQQByAppId:<span class="string">@"腾讯QQ注册的appid"</span></div><div class="line"></div><div class="line">appKey:<span class="string">@"腾讯QQ注册的appkey"</span></div><div class="line"></div><div class="line">authType:SSDKAuthTypeBoth];</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">default</span>:</div><div class="line"></div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;];</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure><br>注：1、所需的相关配置及代码在对应的开放平台上注册成为开发者。</p>
-<p>5、使用ShareSDK分享<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">IBAction</span>)clickShareBtn:(<span class="built_in">UIButton</span> *)sender &#123;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">NSArray</span>* imageArray = @[[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"分享显示的图片（一般使用app的Icon）"</span>]];</div><div class="line"></div><div class="line"><span class="built_in">NSString</span> *htmlTitle = <span class="string">@"分享内容"</span>;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (!htmlTitle) &#123;</div><div class="line"></div><div class="line">htmlTitle = <span class="string">@""</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">NSMutableDictionary</span> *shareParams = [<span class="built_in">NSMutableDictionary</span> dictionary];</div><div class="line"></div><div class="line">[shareParams SSDKSetupShareParamsByText:<span class="literal">nil</span></div><div class="line"></div><div class="line">images:imageArray</div><div class="line"></div><div class="line">url:[<span class="built_in">NSURL</span> URLWithString:<span class="keyword">self</span>.urlStr]</div><div class="line"></div><div class="line">title:htmlTitle</div><div class="line"></div><div class="line">type:SSDKContentTypeAuto];</div><div class="line"></div><div class="line">[ShareSDK showShareActionSheet:<span class="literal">nil</span> items:<span class="literal">nil</span> shareParams:shareParams onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, <span class="built_in">NSDictionary</span> *userData, SSDKContentEntity *contentEntity, <span class="built_in">NSError</span> *error, <span class="built_in">BOOL</span> end) &#123;</div><div class="line"></div><div class="line"><span class="comment">//回调方法中会走成功或失败，监听分享状态可以在这里操作。</span></div><div class="line"></div><div class="line">&#125;];</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure><br>end：更多配置可以参考<a href="http://wiki.mob.com/ios简洁版快速集成/#h1-0" target="_blank" rel="external">http://wiki.mob.com/ios简洁版快速集成/#h1-0</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2016/07/18/iOS数据持久化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headerImage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="靠北’s Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/18/iOS数据持久化/" itemprop="url">iOS数据持久化</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-18T16:45:52+08:00">
-                2016-07-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术分享/" itemprop="url" rel="index">
-                    <span itemprop="name">技术分享</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1、保存到本地Plist文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">- (IBAction)plistSave:(UIButton *)sender &#123;</div><div class="line"></div><div class="line">   //获取沙盒路径</div><div class="line">    NSString *sandBoxPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;</div><div class="line"></div><div class="line">    //新建路径存储plist文件</div><div class="line">    NSString *plistPath = [sandBoxPath stringByAppendingString:@&quot;/StudentInfo.plist&quot;];</div><div class="line"></div><div class="line">    //申明根数组</div><div class="line">    NSMutableArray *rootArray = nil;</div><div class="line"></div><div class="line">    //判断沙盒路径是否存在，根据沙盒路径初始化数组，不存在初始化数组</div><div class="line">    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath]) &#123;</div><div class="line">        //根据沙盒路径初始化数组</div><div class="line">        rootArray = [NSMutableArray arrayWithContentsOfFile:plistPath];</div><div class="line">    &#125;else&#123;</div><div class="line">        rootArray = [NSMutableArray array];</div><div class="line">    &#125;</div><div class="line">    //打包数据信息</div><div class="line">    if (self.name.text.length == 0 || self.age.text.length == 0 || self.grade.text.length == 0) &#123;</div><div class="line">        NSLog(@&quot;信息不完整，存储失败&quot;);</div><div class="line">    &#125;else&#123;</div><div class="line">       NSDictionary *dic = @&#123;@&quot;name&quot;:self.name.text,@&quot;age&quot;:self.age.text,@&quot;grade&quot;:self.grade.text&#125;;</div><div class="line">        [rootArray addObject:dic];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //存入plist文件</div><div class="line">    if ([rootArray writeToFile:plistPath atomically:YES]) &#123;</div><div class="line">        NSLog(@&quot;存储成功&quot;);</div><div class="line">    &#125;else&#123;</div><div class="line">        NSLog(@&quot;存储失败&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    NSLog(@&quot;%@&quot;,plistPath);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>2、从plist文件中读取数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">- (IBAction)plistFetch:(UIButton *)sender &#123;</div><div class="line">    //获取沙盒路径</div><div class="line">    NSString *sandBoxPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;</div><div class="line"></div><div class="line">    //新建路径存储plist文件</div><div class="line">    NSString *plistPath = [sandBoxPath stringByAppendingString:@&quot;/StudentInfo.plist&quot;];</div><div class="line"></div><div class="line">    //申明根数组</div><div class="line">    NSMutableArray *rootArray = nil;</div><div class="line"></div><div class="line">    //判断沙盒路径是否存在，根据沙盒路径初始化数组，不存在初始化数组</div><div class="line">    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath]) &#123;</div><div class="line">        //根据沙盒路径初始化数组</div><div class="line">        rootArray = [NSMutableArray arrayWithContentsOfFile:plistPath];</div><div class="line">    &#125;else&#123;</div><div class="line">        rootArray = [NSMutableArray array];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //判断输入信息是否存在</div><div class="line">    for (NSDictionary *dic in rootArray) &#123;</div><div class="line">        if ([dic[@&quot;name&quot;] isEqualToString:self.name.text]) &#123;</div><div class="line">            NSLog(@&quot;用户存在&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>3、删除Plist文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">- (IBAction)plistDeleted:(UIButton *)sender &#123;</div><div class="line">    //获取沙盒路径</div><div class="line">    NSString *sandBoxPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;</div><div class="line"></div><div class="line">    //新建路径存储plist文件</div><div class="line">    NSString *plistPath = [sandBoxPath stringByAppendingString:@&quot;/StudentInfo.plist&quot;];</div><div class="line"></div><div class="line">    //申明根数组</div><div class="line">    NSMutableArray *rootArray = nil;</div><div class="line"></div><div class="line">    //判断沙盒路径是否存在，根据沙盒路径初始化数组，不存在初始化数组</div><div class="line">    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath]) &#123;</div><div class="line">        //根据沙盒路径初始化数组</div><div class="line">        rootArray = [NSMutableArray arrayWithContentsOfFile:plistPath];</div><div class="line">    &#125;else&#123;</div><div class="line">        rootArray = [NSMutableArray array];</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>4、沙盒文件目录获取代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//Home</div><div class="line">//Home目录</div><div class="line">NSString *homeDirectory = NSHomeDirectory();</div><div class="line"></div><div class="line">//Document</div><div class="line">//Document目录</div><div class="line">NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);  </div><div class="line">NSString *path = [paths objectAtIndex:0];</div><div class="line"></div><div class="line">//Cache</div><div class="line">//Cache目录</div><div class="line">NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);  </div><div class="line">NSString *path = [paths objectAtIndex:0];</div><div class="line">       //Libary目录</div><div class="line">NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);</div><div class="line">NSString *path = [paths objectAtIndex:0];</div></pre></td></tr></table></figure>
-<p>5、图片存入plist  (需要转换)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"> //获取沙盒路径，</div><div class="line"> NSString *path_sandox = NSHomeDirectory();</div><div class="line"> //创建一个存储plist文件的路径</div><div class="line"> NSString *newPath = [path_sandox stringByAppendingPathComponent:@/Documents/pic.plist];</div><div class="line"> NSMutableArray *arr = [[NSMutableArray alloc] init];</div><div class="line"> UIImage *image = [UIImage imageNamed:@&quot;1.png&quot;];</div><div class="line"></div><div class="line"> /*</div><div class="line">  把图片转换为Base64的字符串  </div><div class="line">  在iphone上有两种读取图片数据的简单方法: UIImageJPEGRepresentation和UIImagePNGRepresentation.</div><div class="line"></div><div class="line">  UIImageJPEGRepresentation函数需要两个参数:图片的引用和压缩系数.而UIImagePNGRepresentation只需要图片引用作为参数.通过在实际使用过程中,</div><div class="line">  比较发现: UIImagePNGRepresentation(UIImage* image) 要比UIImageJPEGRepresentation(UIImage* image, 1.0) 返回的图片数据量大很多.</div><div class="line">  譬如,同样是读取摄像头拍摄的同样景色的照片, UIImagePNGRepresentation()返回的数据量大小为199K ,</div><div class="line">  而 UIImageJPEGRepresentation(UIImage* image, 1.0)返回的数据量大小只为140KB,比前者少了50多KB.</div><div class="line">  如果对图片的清晰度要求不高,还可以通过设置 UIImageJPEGRepresentation函数的第二个参数,大幅度降低图片数据量.譬如,刚才拍摄的图片,</div><div class="line">  通过调用UIImageJPEGRepresentation(UIImage* image, 1.0)读取数据时,返回的数据大小为140KB,但更改压缩系数后,</div><div class="line">  通过调用UIImageJPEGRepresentation(UIImage* image, 0.5)读取数据时,返回的数据大小只有11KB多,大大压缩了图片的数据量 ,</div><div class="line">  而且从视角角度看,图片的质量并没有明显的降低.因此,在读取图片数据内容时,建议优先使用UIImageJPEGRepresentation,</div><div class="line">  并可根据自己的实际使用场景,设置压缩系数,进一步降低图片数据量大小.</div><div class="line">  */</div><div class="line"> NSData *_data = UIImageJPEGRepresentation(image, 1.0f);</div><div class="line"> //将图片的data转化为字符串</div><div class="line"> NSString *strimage64 = [_data base64EncodedString];</div><div class="line"></div><div class="line"> [arr addObject:image64];    </div><div class="line">  //写入plist文件    </div><div class="line"> if ([arr writeToFile:newPath atomically:YES]) &#123;       </div><div class="line"> NSLog(@&quot;写入成功&quot;);    </div><div class="line">&#125;;</div><div class="line"> //可以到沙河路径下查看plist文件中的图片数据</div><div class="line"> //这样就存起来的，然后用到的时候再利用存储的字符串转化为图片</div><div class="line"> //NSData *_decodedImageData = [[NSData alloc] initWithBase64Encoding:image64];  这是iOS7之前的一个方法</div><div class="line"></div><div class="line"> NSData *_decodedImageData = [[NSData alloc]initWithBase64EncodedString:strimage64 options:NSDataBase64DecodingIgnoreUnknownCharacters];</div><div class="line"> UIImage *_decodedImage = [UIImage imageWithData:_decodedImageData];</div><div class="line"></div><div class="line"> //可以打印下图片是否存在</div><div class="line"> NSLog(@&quot;===Decoded image size: %@&quot;, NSStringFromCGSize(_decodedImage.size));</div></pre></td></tr></table></figure>
-<p>6、把图片直接保存到沙盒中，然后再把路径存储起来，等到用图片的时候先获取图片的路径，再通过路径拿到图片。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">（1）</div><div class="line">    //拿到图片</div><div class="line">    UIImage *image2 = [UIImage imageNamed:@&quot;1.png&quot;];</div><div class="line">    NSString *path_document = NSHomeDirectory();</div><div class="line">    //设置一个图片的存储路径</div><div class="line">    NSString *imagePath = [path_document stringByAppendingString:@&quot;/Documents/pic.png&quot;];</div><div class="line">    //把图片直接保存到指定的路径（同时应该把图片的路径imagePath存起来，下次就可以直接用来取）</div><div class="line">    [UIImagePNGRepresentation(image2) writeToFile:imagePath atomically:YES];</div><div class="line"></div><div class="line">（2）通过地址取图片</div><div class="line">    UIImage *getimage2 = [UIImage imageWithContentsOfFile:imagePath];</div><div class="line">    NSLog(@&quot;image2 is size %@&quot;,NSStringFromCGSize(getimage2.size));</div></pre></td></tr></table></figure>
-<p>7、归档（序列化）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">（1）归档的类遵守NSCoding协议。</div><div class="line">（2）实现encodeWithCoder 和initWithCoder方法。</div><div class="line">（3）根据地址进行操作。</div><div class="line">好处：可以压缩存放。</div><div class="line">//归档操作</div><div class="line"> BOOL archiver = [NSKeyedArchiver archiveRootObject:per toFile:self.savePath];</div></pre></td></tr></table></figure>
-<p>8、CoreData</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line">（1）配置上下文NSManagedObjectContext：在内存中开辟一个空间，用于专门处理某件事情，结束之后去内存中读取上下文。链接不同功能模块，保证模块独立性。（NSPrivateQueueConcurrencyType私有队列，开辟新的线程池，不阻塞主线程。NSMainQueueConcurrencyType主队列）。</div><div class="line">NSManagedObjectContext * context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];</div><div class="line">        //配置存储调度器</div><div class="line">        //a.从程序中加载模型</div><div class="line">        NSManagedObjectModel * model = [NSManagedObjectModel mergedModelFromBundles:nil];</div><div class="line">        NSPersistentStoreCoordinator * store = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];</div><div class="line">        //b.配置存储调度器存储路径</div><div class="line">        NSURL *url = [NSURL fileURLWithPath:self.keyPath];</div><div class="line">        [store addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:nil];</div><div class="line">        //将调度器赋值给上下文</div><div class="line">        context.persistentStoreCoordinator = store;</div><div class="line">        _context = context;</div><div class="line">（2）增删改查</div><div class="line">- (IBAction)action_btn:(UIButton *)sender &#123;</div><div class="line"></div><div class="line">    switch (sender.tag) &#123;</div><div class="line">        case 101:</div><div class="line">        &#123;</div><div class="line">            //插入</div><div class="line">            Person *person = [NSEntityDescription insertNewObjectForEntityForName:@&quot;Person&quot; inManagedObjectContext:self.context];</div><div class="line">            person.name = self.name.text;</div><div class="line">            person.phone = self.phone.text;</div><div class="line"></div><div class="line">            //保存上下文</div><div class="line">            [self.context save:nil];</div><div class="line"></div><div class="line">        &#125;</div><div class="line">            break;</div><div class="line"></div><div class="line">        case 102:</div><div class="line">        &#123;</div><div class="line">            //删除</div><div class="line">            NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@&quot;Person&quot;];</div><div class="line">            //在上下文中查找</div><div class="line">            NSArray *array = [self.context executeFetchRequest:request error:nil];</div><div class="line">            //匹配数据</div><div class="line">            for (Person *per in array) &#123;</div><div class="line">                if ([per.name isEqualToString:@&quot;12&quot;]) &#123;</div><div class="line">                    [self.context deleteObject:per];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            //数据保存</div><div class="line">            [self.context save:nil];</div><div class="line"></div><div class="line">        &#125;</div><div class="line">            break;</div><div class="line"></div><div class="line">        case 103:</div><div class="line">        &#123;</div><div class="line">            //修改</div><div class="line">            NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@&quot;Person&quot;];</div><div class="line">            //在上下文中查找</div><div class="line">            NSArray *array = [self.context executeFetchRequest:request error:nil];</div><div class="line">            //匹配数据</div><div class="line">            for (Person *per in array) &#123;</div><div class="line">                if ([per.name isEqualToString:@&quot;12&quot;]) &#123;</div><div class="line">                    per.name = @&quot;张三&quot;;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            //数据保存</div><div class="line">            [self.context save:nil];</div><div class="line"></div><div class="line">        &#125;</div><div class="line">            break;</div><div class="line"></div><div class="line">        case 104:</div><div class="line">        &#123;</div><div class="line">            //配置查找条件</div><div class="line">            NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@&quot;Person&quot;];</div><div class="line">            request.fetchLimit = 10;//查询长度</div><div class="line">            request.fetchOffset = 0;//查询起始点</div><div class="line"></div><div class="line">            //查询条件</div><div class="line">            NSPredicate *predicate = [NSPredicate predicateWithFormat:@&quot;name==%@&quot;,@&quot;zhangsan&quot;];</div><div class="line">            request.predicate = predicate;</div><div class="line"></div><div class="line">            //在上下文中查找</div><div class="line">            NSArray *array = [self.context executeFetchRequest:request error:nil];</div><div class="line">            NSLog(@&quot;%@&quot;,array);</div><div class="line">        &#125;</div><div class="line">            break;</div><div class="line"></div><div class="line">        default:</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">过滤条件    ‘*’表示任意字符</div><div class="line">     beginswith 以...开始</div><div class="line">     endswith   以...结束</div><div class="line">     contaits   包含...</div><div class="line">     like       像...</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2016/07/18/地图与定位/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headerImage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="靠北’s Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/18/地图与定位/" itemprop="url">地图与定位</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-18T16:41:47+08:00">
-                2016-07-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术分享/" itemprop="url" rel="index">
-                    <span itemprop="name">技术分享</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>iOS地图定位</p>
-</blockquote>
-<ul>
-<li>导入地图框架</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#import &lt;MapKit/MapKit.h&gt;</div><div class="line">#import &lt;CoreLocation/CoreLocation.h&gt;</div></pre></td></tr></table></figure>
-<p>1、定位</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">//CLLocationManager定位器</div><div class="line">//1 判断设备是否支持定位服务</div><div class="line">    if (![CLLocationManager locationServicesEnabled]) &#123;</div><div class="line">        NSLog(@&quot;不支持此设备&quot;);</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    //2 创建定位服务</div><div class="line">    _locationManager = [[CLLocationManager alloc] init];</div><div class="line">    //3 请求用户授权(使用期间)  在info.plist文件添加的字段必须与设置的字段一致</div><div class="line">    [_locationManager requestWhenInUseAuthorization];</div><div class="line"></div><div class="line">    //4 配置定位服务</div><div class="line">    //4.1 设置定位精度</div><div class="line">    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;</div><div class="line">    //4.2 设置过滤距离(以用户位置方圆100米为半径，实际位置超过该范围才会更新位置。否则不更新)</div><div class="line">    _locationManager.distanceFilter = 100;</div><div class="line">    //4.3 设置代理</div><div class="line">    _locationManager.delegate = self;</div><div class="line"></div><div class="line">    //5 开始定位,定位为耗时操作。定位成功后一定关闭定位。</div><div class="line">    [_locationManager startUpdatingLocation];</div><div class="line">// 在模拟器上定位失败的解决方法</div><div class="line">//1 重置模拟器</div><div class="line">//2 模拟器设置。debug - location - apple 和 customer 之间切换</div></pre></td></tr></table></figure>
-<p>2、地图标点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">//字符转化</div><div class="line">    CGFloat latitude = [dic[@&quot;LATITUDE&quot;] floatValue];</div><div class="line">    CGFloat longtitude = [dic[@&quot;LONGITUDE&quot;] floatValue];</div><div class="line"></div><div class="line">    //设置地图显示的中心点及缩放比例</div><div class="line">    CLLocationCoordinate2D center = &#123;latitude,longtitude&#125;;</div><div class="line">    MKCoordinateSpan span;</div><div class="line"></div><div class="line">    span.latitudeDelta = 1;</div><div class="line">    span.longitudeDelta = 1;</div><div class="line"></div><div class="line">    MKCoordinateRegion region = &#123;center,span&#125;;</div><div class="line"></div><div class="line">    [self.mapView setRegion:region animated:YES];</div><div class="line"></div><div class="line"></div><div class="line">        MKPointAnnotation *anno = [[MKPointAnnotation alloc] init];</div><div class="line">        anno.title = dic[@&quot;NAME&quot;];</div><div class="line">        anno.subtitle = dic[@&quot;ADDRESS&quot;];</div><div class="line">        anno.coordinate = center;</div><div class="line"></div><div class="line">        //调用此方法在地图上加坐标点</div><div class="line">        [self.mapView addAnnotation:anno];</div></pre></td></tr></table></figure>
-<p>3、根据地名获取经纬度</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">- (void)showLatitudeFromCityName:(NSString *)cityName &#123;</div><div class="line"></div><div class="line">       __block  NSDictionary *dic = [NSDictionary dictionary];</div><div class="line"></div><div class="line">    CLGeocoder *myGeocoder = [[CLGeocoder alloc] init];</div><div class="line">    [myGeocoder geocodeAddressString:cityName completionHandler:^(NSArray *placemarks, NSError *error) &#123;</div><div class="line">        if ([placemarks count] &gt; 0 &amp;&amp; error == nil)</div><div class="line">        &#123;</div><div class="line">            CLPlacemark *firstPlacemark = [placemarks objectAtIndex:0];</div><div class="line"></div><div class="line"></div><div class="line">            dic = @&#123;@&quot;LONGITUDE&quot;:@(firstPlacemark.location.coordinate.longitude),</div><div class="line">                    @&quot;LATITUDE&quot;:@(firstPlacemark.location.coordinate.latitude)</div><div class="line">                    &#125;;</div><div class="line"></div><div class="line">            [self showPointOfLatitude:dic];</div><div class="line">        &#125;</div><div class="line">        else if ([placemarks count] == 0 &amp;&amp; error == nil)</div><div class="line">        &#123;</div><div class="line">            NSLog(@&quot;Found no placemarks.&quot;);</div><div class="line">        &#125;</div><div class="line">        else if (error != nil)</div><div class="line">        &#123;</div><div class="line">            NSLog(@&quot;An error occurred = %@&quot;, error);</div><div class="line">        &#125;</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>4、反向解析</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">（1）与长按手势进行配合（手势添加到地图上）</div><div class="line">//长按手势</div><div class="line">    UILongPressGestureRecognizer *gest = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];</div><div class="line"></div><div class="line">    [self.mapView addGestureRecognizer:gest];</div><div class="line"></div><div class="line">（2）根据选中的点，获取相关点</div><div class="line">- (void)longPressAction:(UILongPressGestureRecognizer *)sender&#123;</div><div class="line"></div><div class="line">    //获取触摸的点</div><div class="line">    CGPoint point = [sender locationInView:self.mapView];</div><div class="line">    //通过触摸的点获取经纬度</div><div class="line">    CLLocationCoordinate2D coord = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];</div><div class="line">    //组装参数</div><div class="line">    CLLocation *location = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];</div><div class="line">    //获取信息</div><div class="line">    [geo reverseGeocodeLocation:location completionHandler:^(NSArray&lt;CLPlacemark *&gt; * _Nullable placemarks, NSError * _Nullable error) &#123;</div><div class="line">        //获取位置</div><div class="line">        if (placemarks.count != 0) &#123;</div><div class="line">            CLPlacemark *placeMark = placemarks.firstObject;</div><div class="line"></div><div class="line">            NSArray *addressArray = placeMark.addressDictionary[@&quot;FormattedAddressLines&quot;];</div><div class="line"></div><div class="line">            //拼接地址</div><div class="line">            NSMutableString *address = [[NSMutableString alloc] init];</div><div class="line"></div><div class="line">            for (int i = 0; i &lt; addressArray.count; i ++) &#123;</div><div class="line">                [address appendString:addressArray[i]];</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            MKPointAnnotation *anno = [[MKPointAnnotation alloc] init];</div><div class="line">            anno.title = placeMark.name;</div><div class="line">            anno.subtitle = address;</div><div class="line">            anno.coordinate = coord;</div><div class="line"></div><div class="line">            [self.mapView addAnnotation:anno];</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2016/07/18/iOS动画/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headerImage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="靠北’s Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/18/iOS动画/" itemprop="url">iOS动画</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-18T11:36:46+08:00">
-                2016-07-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术分享/" itemprop="url" rel="index">
-                    <span itemprop="name">技术分享</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>iOS动画分为基础动画和核心动画</p>
-</blockquote>
-<p>iOS中关键动画如下</p>
-<ul>
-<li>CALayer动画</li>
-<li>CABasicAnimation 基础动画</li>
-<li>CAKeyFrameAnimation 关键帧动画</li>
-<li>CaTransition 过度、转场动画</li>
-<li>CAAnimationGroup 组合动画 <br><br>注：以上动画必须加载到layer上执行</li>
-</ul>
-<hr>
-<ul>
-<li>基础动画1</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">- (void)animation1&#123;</div><div class="line">    [UIView beginAnimations:@&quot;第一个动画&quot; context:nil];</div><div class="line"></div><div class="line">    //配置动画属性</div><div class="line">    [UIView setAnimationCurve:UIViewAnimationCurveLinear];//速度，UIViewAnimationCurveLinear 匀速</div><div class="line">    [UIView setAnimationDuration:3];//动画时间</div><div class="line">//    [UIView setAnimationDelay:2];//延迟</div><div class="line">    [UIView setAnimationDelegate:self];//动画代理方法</div><div class="line">    [UIView setAnimationRepeatCount:3];//重复次数</div><div class="line">//    [UIView setAnimationWillStartSelector:@selector(actionTest)];//动画将要开始的时候执行方法</div><div class="line"></div><div class="line">    //设置变化：位置，尺寸，颜色等</div><div class="line">    self.animationView.frame = CGRectMake(200, 200, 200, 200);</div><div class="line">    self.animationView.backgroundColor = [UIColor yellowColor];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>基础动画2（转场动画）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//UIView动画2，转场</div><div class="line">- (void)animation2&#123;</div><div class="line">    [UIView beginAnimations:@&quot;tranform&quot; context:nil];</div><div class="line">    [UIView setAnimationDuration:2];</div><div class="line">    [UIView setAnimationRepeatCount:10];</div><div class="line">    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.animationView cache:YES];//翻转方向</div><div class="line"></div><div class="line">    [UIView commitAnimations]; //转场动画必须调用commit方法</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>基础动画3（block动画）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//UIView动画3.block</div><div class="line">- (void)animation3&#123;</div><div class="line">    [UIView animateWithDuration:3 animations:^&#123;</div><div class="line">        [UIView setAnimationRepeatCount:100];</div><div class="line">        self.animationView.center = self.view.center;</div><div class="line">    &#125; completion:^(BOOL finished) &#123;</div><div class="line">        self.animationView.frame = CGRectMake(100, 100, 100, 100);</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>CAAnimation动画</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//CAAnimation动画</div><div class="line">- (void)animation_CABasicAnimation&#123;</div><div class="line">    //基础动画配置三要素：duration动画时间  fromeValue开始尺寸  toValue动画达到尺寸</div><div class="line">    //注意：layer没有的属性是不能作为KeyPath。如：frame</div><div class="line"></div><div class="line">    CABasicAnimation *basicAnimation = [CABasicAnimation animationWithKeyPath:@&quot;bounds&quot;]; //创建动画对象</div><div class="line">    basicAnimation.duration = 0.05;//动画时间</div><div class="line">    basicAnimation.repeatCount = INT_MAX;//重复执行</div><div class="line">    basicAnimation.fromValue = [NSValue valueWithCGRect:self.animationView.bounds];//动画开始的尺寸</div><div class="line">    basicAnimation.toValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 400, 400)];//动画要达到的尺寸</div><div class="line"></div><div class="line">    [self.animationView.layer addAnimation:basicAnimation forKey:@&quot;animation_CABasicAnimation&quot;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>帧动画</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//帧动画</div><div class="line">- (void)animtaion_CAKeyfrmaeAnimation&#123;</div><div class="line">    CAKeyframeAnimation *keyfrmae = [CAKeyframeAnimation animationWithKeyPath:@&quot;backgroundColor&quot;];</div><div class="line">    keyfrmae.duration = 4;</div><div class="line">    keyfrmae.values = @[(id)[UIColor blueColor].CGColor,(id)[UIColor orangeColor].CGColor,(id)[UIColor yellowColor].CGColor,(id)[UIColor greenColor].CGColor]; //每一帧颜色</div><div class="line">    keyfrmae.keyTimes = @[@(0.25),@(0.5),@(0.75),@(1)];//每一帧动画执行时间</div><div class="line"></div><div class="line">    [self.animationView.layer addAnimation:keyfrmae forKey:@&quot;keyFrame&quot;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>过度动画</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//过度动画</div><div class="line">- (void)animation_CATransition&#123;</div><div class="line">    //设置 时间、样式、方向</div><div class="line">    CATransition *trans = [CATransition animation];</div><div class="line">    trans.duration = 0.1;</div><div class="line">    trans.repeatCount = INT_MAX;</div><div class="line">    trans.type = kCATransitionPush;//控制样式；</div><div class="line">    trans.subtype = kCATransitionFromRight;//控制方向</div><div class="line"></div><div class="line">    [self.animationView.layer addAnimation:trans forKey:@&quot;trans&quot;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>动画组（将已定义的核心动画装入一个动画执行组一起执行，注意动画组的执行时间）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">- (void)CAAnimationGroup&#123;</div><div class="line"></div><div class="line">    //1</div><div class="line">    CABasicAnimation *basicAnimation = [CABasicAnimation animationWithKeyPath:@&quot;bounds&quot;]; //创建动画对象</div><div class="line">    basicAnimation.duration = 0.1;//动画时间</div><div class="line">    basicAnimation.fromValue = [NSValue valueWithCGRect:self.animationView.bounds];//动画开始的尺寸</div><div class="line">    basicAnimation.toValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 400, 400)];//动画要达到的尺寸</div><div class="line"></div><div class="line">    //2</div><div class="line">    CAKeyframeAnimation *keyfrmae = [CAKeyframeAnimation animationWithKeyPath:@&quot;backgroundColor&quot;];</div><div class="line">    keyfrmae.duration = 0.5;</div><div class="line">    keyfrmae.values = @[(id)[UIColor blueColor].CGColor,(id)[UIColor orangeColor].CGColor,(id)[UIColor yellowColor].CGColor,(id)[UIColor greenColor].CGColor]; //每一帧颜色</div><div class="line">    keyfrmae.keyTimes = @[@(0.25),@(0.5),@(0.75),@(1)];//每一帧动画执行时间</div><div class="line"></div><div class="line"></div><div class="line">    CAAnimationGroup *group = [CAAnimationGroup animation];</div><div class="line">    group.animations = @[basicAnimation,keyfrmae];</div><div class="line">    group.duration = 0;</div><div class="line">    group.repeatCount = INT_MAX;</div><div class="line"></div><div class="line">    [self.animationView.layer addAnimation:group forKey:@&quot;group&quot;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2016/03/30/iOS视频转换/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headerImage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="靠北’s Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/03/30/iOS视频转换/" itemprop="url">iOS视频转换</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-30T14:23:22+08:00">
-                2016-03-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术分享/" itemprop="url" rel="index">
-                    <span itemprop="name">技术分享</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>iOS原生照片库视频格式为.mov，内存占用大，在发送文件中对它进行压缩为mp4。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)movFileTransformToMP4WithSourcePath:(<span class="built_in">NSString</span> *)sourcePath completion:(<span class="keyword">void</span>(^)(<span class="built_in">NSString</span> *Mp4FilePath))comepleteBlock session:(<span class="keyword">void</span>(^)(<span class="built_in">AVAssetExportSession</span> *session))sessionBlock</div><div class="line">&#123;</div><div class="line"><span class="comment">/**</span></div><div class="line">*  mov格式转mp4格式</div><div class="line">*/</div><div class="line"><span class="built_in">NSURL</span> *sourceUrl = [<span class="built_in">NSURL</span> URLWithString:sourcePath];</div><div class="line"></div><div class="line"><span class="built_in">AVURLAsset</span> *avAsset = [<span class="built_in">AVURLAsset</span> URLAssetWithURL:sourceUrl options:<span class="literal">nil</span>];</div><div class="line"></div><div class="line"><span class="built_in">NSArray</span> *compatiblePresets = [<span class="built_in">AVAssetExportSession</span> exportPresetsCompatibleWithAsset:avAsset];</div><div class="line"></div><div class="line"><span class="keyword">if</span> ([compatiblePresets containsObject:<span class="built_in">AVAssetExportPresetMediumQuality</span>]) &#123;</div><div class="line"></div><div class="line">exportSession = [[<span class="built_in">AVAssetExportSession</span> alloc] initWithAsset:avAsset presetName:<span class="built_in">AVAssetExportPresetMediumQuality</span>];</div><div class="line"><span class="built_in">NSString</span> *fileStr = [[sourcePath componentsSeparatedByString:<span class="string">@"/"</span>].lastObject.uppercaseString stringByReplacingPercentEscapesUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</div><div class="line"><span class="built_in">NSString</span> *fileName = [[fileStr componentsSeparatedByString:<span class="string">@"."</span>].firstObject.uppercaseString stringByAddingPercentEscapesUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</div><div class="line"><span class="built_in">NSString</span> *uniqueName = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@.mp4"</span>,fileName];</div><div class="line"><span class="built_in">NSArray</span> *docPaths = <span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>);</div><div class="line"><span class="built_in">NSString</span> *docPath = docPaths.lastObject;</div><div class="line"><span class="built_in">NSString</span> * resultPath = [docPath stringByAppendingPathComponent:uniqueName];</div><div class="line"></div><div class="line">exportSession.outputURL = [<span class="built_in">NSURL</span> fileURLWithPath:resultPath];</div><div class="line">exportSession.outputFileType = <span class="built_in">AVFileTypeMPEG4</span>;</div><div class="line">exportSession.shouldOptimizeForNetworkUse = <span class="literal">YES</span>;</div><div class="line"></div><div class="line"><span class="comment">//如有此文件则直接返回</span></div><div class="line"><span class="keyword">if</span> ([[<span class="built_in">NSFileManager</span> defaultManager] fileExistsAtPath:resultPath]) &#123;</div><div class="line">comepleteBlock(resultPath);</div><div class="line"><span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">[exportSession exportAsynchronouslyWithCompletionHandler:^(<span class="keyword">void</span>)</div><div class="line">&#123;</div><div class="line"><span class="keyword">switch</span> (exportSession.status) &#123;</div><div class="line"></div><div class="line"><span class="keyword">case</span> <span class="built_in">AVAssetExportSessionStatusUnknown</span>:</div><div class="line">&#123;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"视频格式转换出错Unknown"</span>);</div><div class="line">sessionBlock(exportSession);</div><div class="line">&#125;</div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">case</span> <span class="built_in">AVAssetExportSessionStatusWaiting</span>:</div><div class="line">&#123;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"视频格式转换出错Waiting"</span>);</div><div class="line">sessionBlock(exportSession);</div><div class="line">&#125;</div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">case</span> <span class="built_in">AVAssetExportSessionStatusExporting</span>:</div><div class="line">&#123;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"视频格式转换出错Exporting"</span>);</div><div class="line">sessionBlock(exportSession);</div><div class="line">&#125;</div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">case</span> <span class="built_in">AVAssetExportSessionStatusCompleted</span>:</div><div class="line">&#123;</div><div class="line">comepleteBlock(resultPath);</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"mp4 file size:%lf MB"</span>,[<span class="built_in">NSData</span> dataWithContentsOfURL:exportSession.outputURL].length/<span class="number">1024.</span>f/<span class="number">1024.</span>f);</div><div class="line"><span class="built_in">NSData</span> *da = [<span class="built_in">NSData</span> dataWithContentsOfFile:resultPath];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"da:%lu"</span>,(<span class="keyword">unsigned</span> <span class="keyword">long</span>)da.length);</div><div class="line">&#125;</div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">case</span> <span class="built_in">AVAssetExportSessionStatusFailed</span>:</div><div class="line">&#123;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"视频格式转换出错Unknown"</span>);</div><div class="line">sessionBlock(exportSession);</div><div class="line">&#125;</div><div class="line"><span class="keyword">break</span>;</div><div class="line"></div><div class="line"><span class="keyword">case</span> <span class="built_in">AVAssetExportSessionStatusCancelled</span>:</div><div class="line">&#123;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"视频格式转换出错Cancelled"</span>);</div><div class="line">sessionBlock(exportSession);</div><div class="line">&#125;</div><div class="line"><span class="keyword">break</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;];</div><div class="line"></div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
+近期增加了object-c的具体应用，包括手势绘制，验证，更新，以及处理了一些手势绘制过程中Bug。详情见object-c实现。
+
+
+一、swift实现
+
+使用swift实现iOS手势锁屏，虽然在iOS客户端很少使用到滑动手势，但是有时候为了和安卓应用保持用户交互的一致性，所以有的时候还是很有必要
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/05/swift实现手势解锁绘制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1434,7 +706,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
