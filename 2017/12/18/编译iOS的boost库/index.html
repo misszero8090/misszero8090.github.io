@@ -1,0 +1,779 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C++,Boost," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="环境：xcode9mac os 10.13 1、下载boost库并解压2、cd到解压后的文件包内，执行 bootstrap.sh```（解压后会得到这个脚本文件）。12343、执行```./b2``` 编译整个库。4、经过一段时间编译后，得到编译后的头文件和库文件。5、运行 ```sudo ./b2 install``` 命令 将编译后的库安装到系统默认路径/usr/local/include下6">
+<meta name="keywords" content="C++,Boost">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译iOS的Boost库">
+<meta property="og:url" content="http://he8090.cn/2017/12/18/编译iOS的boost库/index.html">
+<meta property="og:site_name" content="靠北’s Notes">
+<meta property="og:description" content="环境：xcode9mac os 10.13 1、下载boost库并解压2、cd到解压后的文件包内，执行 bootstrap.sh```（解压后会得到这个脚本文件）。12343、执行```./b2``` 编译整个库。4、经过一段时间编译后，得到编译后的头文件和库文件。5、运行 ```sudo ./b2 install``` 命令 将编译后的库安装到系统默认路径/usr/local/include下6">
+<meta property="og:updated_time" content="2017-12-18T06:20:41.703Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编译iOS的Boost库">
+<meta name="twitter:description" content="环境：xcode9mac os 10.13 1、下载boost库并解压2、cd到解压后的文件包内，执行 bootstrap.sh```（解压后会得到这个脚本文件）。12343、执行```./b2``` 编译整个库。4、经过一段时间编译后，得到编译后的头文件和库文件。5、运行 ```sudo ./b2 install``` 命令 将编译后的库安装到系统默认路径/usr/local/include下6">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://he8090.cn/2017/12/18/编译iOS的boost库/"/>
+
+
+
+
+
+  <title>编译iOS的Boost库 | 靠北’s Notes</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6961312303680db8ea4d5558f73d8325";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">靠北’s Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我用文字记忆，青春年华。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://he8090.cn/2017/12/18/编译iOS的boost库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headerImage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="靠北’s Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">编译iOS的Boost库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T14:11:34+08:00">
+                2017-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术分享/" itemprop="url" rel="index">
+                    <span itemprop="name">技术分享</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>环境：<br>xcode9<br>mac os 10.13</p>
+<p>1、下载boost库并解压<br>2、cd到解压后的文件包内，执行 <figure class="highlight sh"><figcaption><span>bootstrap.sh```（解压后会得到这个脚本文件）。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">3、执行```./b2``` 编译整个库。</div><div class="line">4、经过一段时间编译后，得到编译后的头文件和库文件。</div><div class="line">5、运行 ```sudo ./b2 install``` 命令 将编译后的库安装到系统默认路径/usr/<span class="built_in">local</span>/include下</div><div class="line">6、这时候得到的库文件可能只是X86_64此类模拟器架构运行的库，如果需要真机库需要在第3步之后按照实际情况运行以下脚本。```sh myBuildBoost.sh</div></pre></td></tr></table></figure></p>
+<p>7、运行后会编译出需要架构的库文件，直接将编译完成之后的库文件复制到系统目录下即可。<br>8、xcode调试，依次在<figure class="highlight plain"><figcaption><span>Search path```  和 ```library search path```后添加头文件和库文件路径```/usr/local/include```    ```/usr/local/lib```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">9、在build phases -&gt;link binaru with libray中添加需要的库文件。</div><div class="line">10、在实际真机运行中可能会要求关闭bitcode，关闭即可运行。</div></pre></td></tr></table></figure></p>
+<p>myBuildBoost.sh</p>
+<p>#!/bin/sh</p>
+<h1 id="myBuildBoost-sh"><a href="#myBuildBoost-sh" class="headerlink" title="myBuildBoost.sh"></a>myBuildBoost.sh</h1><h1 id="TestMaster"><a href="#TestMaster" class="headerlink" title="TestMaster"></a>TestMaster</h1><p>#</p>
+<h1 id="Created-by-LuoYao-on-2017-10-20"><a href="#Created-by-LuoYao-on-2017-10-20" class="headerlink" title="Created by LuoYao on 2017/10/20."></a>Created by LuoYao on 2017/10/20.</h1><h1 id="Copyright-©-2017年-kim-All-rights-reserved"><a href="#Copyright-©-2017年-kim-All-rights-reserved" class="headerlink" title="Copyright © 2017年 kim. All rights reserved."></a>Copyright © 2017年 kim. All rights reserved.</h1><h1 id="请自行修改路径，cd到boost解压后的目录下"><a href="#请自行修改路径，cd到boost解压后的目录下" class="headerlink" title="请自行修改路径，cd到boost解压后的目录下"></a>请自行修改路径，cd到boost解压后的目录下</h1><p>dir=<code>dirname $0</code><br>cd “/usr/local/boost_1_57_0”</p>
+<h1 id="如果库文件已存在，直接退出"><a href="#如果库文件已存在，直接退出" class="headerlink" title="如果库文件已存在，直接退出"></a>如果库文件已存在，直接退出</h1><p>if [ -e ./stage/lib/libboost_date_time.a ]; then<br>echo “libraries exist. no need to build.”<br>exit 0<br>fi</p>
+<p>: ${COMPILER:=”clang++”}<br>: ${IPHONE_SDKVERSION:=<code>xcodebuild -showsdks | grep iphoneos | egrep &quot;[[:digit:]]+\.[[:digit:]]+&quot; -o | tail -1</code>}<br>: ${XCODE_ROOT:=<code>xcode-select -print-path</code>}<br>: ${EXTRA_CPPFLAGS:=”-DBOOST_AC_USE_PTHREADS -DBOOST_SP_USE_PTHREADS -stdlib=libc++”}</p>
+<p>echo “IPHONE_SDKVERSION: $IPHONE_SDKVERSION”<br>echo “XCODE_ROOT:        $XCODE_ROOT”<br>echo “COMPILER:          $COMPILER”</p>
+<p>echo “bootstrap”</p>
+<h1 id="此脚本如果是被Xcode调用的话，会因为xcode-export的某些变量导致失败，所以加了env-i。直接在命令行运行此脚本可以把env-i-去掉"><a href="#此脚本如果是被Xcode调用的话，会因为xcode-export的某些变量导致失败，所以加了env-i。直接在命令行运行此脚本可以把env-i-去掉" class="headerlink" title="此脚本如果是被Xcode调用的话，会因为xcode export的某些变量导致失败，所以加了env -i。直接在命令行运行此脚本可以把env -i 去掉"></a>此脚本如果是被Xcode调用的话，会因为xcode export的某些变量导致失败，所以加了env -i。直接在命令行运行此脚本可以把env -i 去掉</h1><h1 id="env-i-bash-bootstrap-sh"><a href="#env-i-bash-bootstrap-sh" class="headerlink" title="env -i bash ./bootstrap.sh"></a>env -i bash ./bootstrap.sh</h1><p>echo “write project-config.jam”</p>
+<h1 id="默认生存的project-config-jam是编译Mac版的，这里直接调换掉"><a href="#默认生存的project-config-jam是编译Mac版的，这里直接调换掉" class="headerlink" title="默认生存的project-config.jam是编译Mac版的，这里直接调换掉"></a>默认生存的project-config.jam是编译Mac版的，这里直接调换掉</h1><p>rm project-config.jam<br>cat &gt;&gt; project-config.jam &lt;<eof using="" darwin="" :="" ${iphone_sdkversion}~iphone="" $xcode_root="" toolchains="" xcodedefault.xctoolchain="" usr="" bin="" $compiler="" -arch="" armv7="" armv7s="" arm64="" $extra_cppflags="" <striper=""> <root>$XCODE_ROOT/Platforms/iPhoneOS.platform/Developer<br>: <architecture>arm <target-os>iphone<br>;<br>using darwin : ${IPHONE_SDKVERSION}~iphonesim<br>: $XCODE_ROOT/Toolchains/XcodeDefault.xctoolchain/usr/bin/$COMPILER -arch i386 -arch x86_64 $EXTRA_CPPFLAGS<br>: <striper> <root>$XCODE_ROOT/Platforms/iPhoneSimulator.platform/Developer<br>: <architecture>ia64 <target-os>iphone<br>;<br>EOF</target-os></architecture></root></striper></target-os></architecture></root></eof></p>
+<h1 id="上面的代码里，两个using-darwin分别是编译真机版和模拟器版的设置。每多一种CPU架构就要再加一个-arch-xxx。"><a href="#上面的代码里，两个using-darwin分别是编译真机版和模拟器版的设置。每多一种CPU架构就要再加一个-arch-xxx。" class="headerlink" title="上面的代码里，两个using darwin分别是编译真机版和模拟器版的设置。每多一种CPU架构就要再加一个-arch xxx。"></a>上面的代码里，两个using darwin分别是编译真机版和模拟器版的设置。每多一种CPU架构就要再加一个-arch xxx。</h1><p>echo “build boost iphone dev”<br>./bjam -j16 –with-iostreams –with-regex –with-timer –with-exception –with-chrono –with-serialization –with-signals –with-date_time –with-filesystem –with-system –with-thread –build-dir=iphone-build –stagedir=iphone-build/stage toolset=darwin architecture=arm target-os=iphone macosx-version=iphone-${IPHONE_SDKVERSION} define=_LITTLE_ENDIAN link=static stage</p>
+<p>echo “build boost iphone sim”<br>./bjam -j16 –with-iostreams –with-regex –with-timer –with-exception –with-chrono –with-serialization –with-signals –with-date_time –with-filesystem –with-system –with-thread –build-dir=iphonesim-build –stagedir=iphonesim-build/stage –toolset=darwin-${IPHONE_SDKVERSION}~iphonesim architecture=ia64 target-os=iphone macosx-version=iphonesim-${IPHONE_SDKVERSION} link=static stage cxxflags=-miphoneos-version-min=7.0</p>
+<p>echo “lipo”</p>
+<h1 id="把各架构下的库文件合一，以便在xcode里可以少设置些搜索路径。做得更彻底些是各个分库合成一个大库。不过除非是把静态库加入到代码仓库，否则是浪费时间了。要合成的大库话请参考https-gist-github-com-rsobik-7513324原文。"><a href="#把各架构下的库文件合一，以便在xcode里可以少设置些搜索路径。做得更彻底些是各个分库合成一个大库。不过除非是把静态库加入到代码仓库，否则是浪费时间了。要合成的大库话请参考https-gist-github-com-rsobik-7513324原文。" class="headerlink" title="把各架构下的库文件合一，以便在xcode里可以少设置些搜索路径。做得更彻底些是各个分库合成一个大库。不过除非是把静态库加入到代码仓库，否则是浪费时间了。要合成的大库话请参考https://gist.github.com/rsobik/7513324原文。"></a>把各架构下的库文件合一，以便在xcode里可以少设置些搜索路径。做得更彻底些是各个分库合成一个大库。不过除非是把静态库加入到代码仓库，否则是浪费时间了。要合成的大库话请参考<a href="https://gist.github.com/rsobik/7513324原文。" target="_blank" rel="external">https://gist.github.com/rsobik/7513324原文。</a></h1><p>mkdir -p stage/lib<br>lipo -create iphone-build/stage/lib/libboost_iostreams.a iphonesim-build/stage/lib/libboost_iostreams.a -output stage/lib/libboost_iostreams.a<br>lipo -create iphone-build/stage/lib/libboost_regex.a iphonesim-build/stage/lib/libboost_regex.a -output stage/lib/libboost_regex.a<br>lipo -create iphone-build/stage/lib/libboost_timer.a iphonesim-build/stage/lib/libboost_timer.a -output stage/lib/libboost_timer.a<br>lipo -create iphone-build/stage/lib/libboost_exception.a iphonesim-build/stage/lib/libboost_exception.a -output stage/lib/libboost_exception.a<br>lipo -create iphone-build/stage/lib/libboost_chrono.a iphonesim-build/stage/lib/libboost_chrono.a -output stage/lib/libboost_chrono.a<br>lipo -create iphone-build/stage/lib/libboost_serialization.a iphonesim-build/stage/lib/libboost_serialization.a -output stage/lib/libboost_serialization.a<br>lipo -create iphone-build/stage/lib/libboost_signals.a iphonesim-build/stage/lib/libboost_signals.a -output stage/lib/libboost_signals.a<br>lipo -create iphone-build/stage/lib/libboost_atomic.a iphonesim-build/stage/lib/libboost_atomic.a -output stage/lib/libboost_atomic.a<br>lipo -create iphone-build/stage/lib/libboost_wserialization.a iphonesim-build/stage/lib/libboost_wserialization.a -output stage/lib/libboost_wserialization.a<br>lipo -create iphone-build/stage/lib/libboost_date_time.a iphonesim-build/stage/lib/libboost_date_time.a -output stage/lib/libboost_date_time.a<br>lipo -create iphone-build/stage/lib/libboost_filesystem.a iphonesim-build/stage/lib/libboost_filesystem.a -output stage/lib/libboost_filesystem.a<br>lipo -create iphone-build/stage/lib/libboost_system.a iphonesim-build/stage/lib/libboost_system.a -output stage/lib/libboost_system.a<br>lipo -create iphone-build/stage/lib/libboost_thread.a iphonesim-build/stage/lib/libboost_thread.a -output stage/lib/libboost_thread.a</p>
+<h1 id="库文件最终放在-stage-lib-下"><a href="#库文件最终放在-stage-lib-下" class="headerlink" title="库文件最终放在./stage/lib/下"></a>库文件最终放在./stage/lib/下</h1><p>echo “Completed successfully”</p>
+<p>```</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxPay.png" alt="yao WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/aliPay.png" alt="yao Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/Boost/" rel="tag"># Boost</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/12/iOS开发者和人工智能/" rel="next" title="iOS开发者和人工智能">
+                <i class="fa fa-chevron-left"></i> iOS开发者和人工智能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/headerImage.png"
+               alt="yao" />
+          <p class="site-author-name" itemprop="name">yao</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#myBuildBoost-sh"><span class="nav-number">1.</span> <span class="nav-text">myBuildBoost.sh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TestMaster"><span class="nav-number">2.</span> <span class="nav-text">TestMaster</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Created-by-LuoYao-on-2017-10-20"><span class="nav-number">3.</span> <span class="nav-text">Created by LuoYao on 2017/10/20.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Copyright-©-2017年-kim-All-rights-reserved"><span class="nav-number">4.</span> <span class="nav-text">Copyright © 2017年 kim. All rights reserved.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请自行修改路径，cd到boost解压后的目录下"><span class="nav-number">5.</span> <span class="nav-text">请自行修改路径，cd到boost解压后的目录下</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如果库文件已存在，直接退出"><span class="nav-number">6.</span> <span class="nav-text">如果库文件已存在，直接退出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#此脚本如果是被Xcode调用的话，会因为xcode-export的某些变量导致失败，所以加了env-i。直接在命令行运行此脚本可以把env-i-去掉"><span class="nav-number">7.</span> <span class="nav-text">此脚本如果是被Xcode调用的话，会因为xcode export的某些变量导致失败，所以加了env -i。直接在命令行运行此脚本可以把env -i 去掉</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#env-i-bash-bootstrap-sh"><span class="nav-number">8.</span> <span class="nav-text">env -i bash ./bootstrap.sh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#默认生存的project-config-jam是编译Mac版的，这里直接调换掉"><span class="nav-number">9.</span> <span class="nav-text">默认生存的project-config.jam是编译Mac版的，这里直接调换掉</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#上面的代码里，两个using-darwin分别是编译真机版和模拟器版的设置。每多一种CPU架构就要再加一个-arch-xxx。"><span class="nav-number">10.</span> <span class="nav-text">上面的代码里，两个using darwin分别是编译真机版和模拟器版的设置。每多一种CPU架构就要再加一个-arch xxx。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#把各架构下的库文件合一，以便在xcode里可以少设置些搜索路径。做得更彻底些是各个分库合成一个大库。不过除非是把静态库加入到代码仓库，否则是浪费时间了。要合成的大库话请参考https-gist-github-com-rsobik-7513324原文。"><span class="nav-number">11.</span> <span class="nav-text">把各架构下的库文件合一，以便在xcode里可以少设置些搜索路径。做得更彻底些是各个分库合成一个大库。不过除非是把静态库加入到代码仓库，否则是浪费时间了。要合成的大库话请参考https://gist.github.com/rsobik/7513324原文。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#库文件最终放在-stage-lib-下"><span class="nav-number">12.</span> <span class="nav-text">库文件最终放在./stage/lib/下</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2135471"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
