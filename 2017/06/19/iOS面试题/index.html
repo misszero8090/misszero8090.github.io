@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="为提高自己的基础知识水平，最近看了一些笔试相关题目，感觉很多说不清楚和明白，我会在这篇文中中去分享一些面试题和答案，供大家参考，如有错误的地方请大家指正。谢谢！  什么情况使用 weak 关键字，相比 assign 有什么不同？什么情况使用 weak 关键字？在 ARC 中,在有可能出现循环引用的时候,往往要通过让其中一端使用 weak 来解决,比如: delegate 代理属性自身已经对它进行">
+<meta name="description" content="为提高自己的基础知识水平，最近看了一些笔试相关题目，感觉很多说不清楚和明白，我会在这篇文中中去分享一些面试题和答案，供大家参考，如有错误的地方请大家指正。谢谢！">
 <meta name="keywords" content="iOS面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS面试题">
 <meta property="og:url" content="http://he8090.cn/2017/06/19/iOS面试题/index.html">
 <meta property="og:site_name" content="靠北’s Notes">
-<meta property="og:description" content="为提高自己的基础知识水平，最近看了一些笔试相关题目，感觉很多说不清楚和明白，我会在这篇文中中去分享一些面试题和答案，供大家参考，如有错误的地方请大家指正。谢谢！  什么情况使用 weak 关键字，相比 assign 有什么不同？什么情况使用 weak 关键字？在 ARC 中,在有可能出现循环引用的时候,往往要通过让其中一端使用 weak 来解决,比如: delegate 代理属性自身已经对它进行">
-<meta property="og:updated_time" content="2017-06-20T03:09:10.000Z">
+<meta property="og:description" content="为提高自己的基础知识水平，最近看了一些笔试相关题目，感觉很多说不清楚和明白，我会在这篇文中中去分享一些面试题和答案，供大家参考，如有错误的地方请大家指正。谢谢！">
+<meta property="og:updated_time" content="2018-08-12T10:38:39.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS面试题">
-<meta name="twitter:description" content="为提高自己的基础知识水平，最近看了一些笔试相关题目，感觉很多说不清楚和明白，我会在这篇文中中去分享一些面试题和答案，供大家参考，如有错误的地方请大家指正。谢谢！  什么情况使用 weak 关键字，相比 assign 有什么不同？什么情况使用 weak 关键字？在 ARC 中,在有可能出现循环引用的时候,往往要通过让其中一端使用 weak 来解决,比如: delegate 代理属性自身已经对它进行">
+<meta name="twitter:description" content="为提高自己的基础知识水平，最近看了一些笔试相关题目，感觉很多说不清楚和明白，我会在这篇文中中去分享一些面试题和答案，供大家参考，如有错误的地方请大家指正。谢谢！">
 
 
 
@@ -366,6 +366,7 @@
         <blockquote>
 <p>为提高自己的基础知识水平，最近看了一些笔试相关题目，感觉很多说不清楚和明白，我会在这篇文中中去分享一些面试题和答案，供大家参考，如有错误的地方请大家指正。谢谢！</p>
 </blockquote>
+<a id="more"></a>
 <h6 id="什么情况使用-weak-关键字，相比-assign-有什么不同？"><a href="#什么情况使用-weak-关键字，相比-assign-有什么不同？" class="headerlink" title="什么情况使用 weak 关键字，相比 assign 有什么不同？"></a>什么情况使用 weak 关键字，相比 assign 有什么不同？</h6><p>什么情况使用 weak 关键字？<br>在 ARC 中,在有可能出现循环引用的时候,往往要通过让其中一端使用 weak 来解决,比如: delegate 代理属性<br>自身已经对它进行一次强引用,没有必要再强引用一次,此时也会使用 weak,自定义 IBOutlet 控件属性一般也使用 weak；当然，也可以使用strong。<br>不同点：<br>weak 此特质表明该属性定义了一种“非拥有关系” (nonowning relationship)。为这种属性设置新值时，设置方法既不保留新值，也不释放旧值。此特质同assign类似， 然而在属性所指的对象遭到摧毁时，属性值也会清空(nil out)。 而 assign 的“设置方法”只会执行针对“纯量类型” (scalar type，例如 CGFloat 或 NSlnteger 等)的简单赋值操作。<br>assign 可以用非 OC 对象,而 weak 必须用于 OC 对象</p>
 <hr>
 <h6 id="copy关键字"><a href="#copy关键字" class="headerlink" title="copy关键字"></a>copy关键字</h6><p>1、可变类型使用copy：NSString、NSArray、NSDictionary 等等经常使用copy关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary；</p>
@@ -676,7 +677,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

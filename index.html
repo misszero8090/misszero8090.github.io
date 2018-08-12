@@ -644,10 +644,7 @@
 
       
         
-          
-          最近想到要写一些关于生活的文章，那么我就从最近的露营开始。当提到露营很多人想到的是浪漫、随心、惬意。但，其实第一次露营的经历告诉我，前面的那些想法只是存在想象和影视之中，现实中要考虑因素和情况真的是太多了，后面我会提到这些。
-说说这次我们是怎么想到露营的吧，其实准备很匆忙，周五的时候有一对朋友约我们
-          ...
+          <p>最近想到要写一些关于生活的文章，那么我就从最近的露营开始。<br>当提到露营很多人想到的是浪漫、随心、惬意。但，其实第一次露营的经历告诉我，前面的那些想法只是存在想象和影视之中，现实中要考虑因素和情况真的是太多了，后面我会提到这些。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/17/第一次露营/#more" rel="contents">
@@ -785,13 +782,9 @@
 
       
         
-          
-          
-这是一篇深度好文，突出了一个年轻人成长的内心和对故乡的情感。值得一看。
-
-
-
-          
+          <blockquote>
+<p>这是一篇深度好文，突出了一个年轻人成长的内心和对故乡的情感。值得一看。</p>
+</blockquote>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/07/25/转《录取通知书：从此后，父母只剩背影，故乡只有夏冬》/#more" rel="contents">
@@ -929,11 +922,24 @@
 
       
         
-          
-           hpple在网页解析方面有很重要的作用，本次项目中用到合作单位提供的一个信号标识，但是对方不提供接口只提供HTML网页解析，所以客户端只能拿到HTML源码之后对HTML源码进行解析，拿到自己需要的数据。
-
-demo地址：https://github.com/misszero8090/httpPar
-          ...
+          <p> hpple在网页解析方面有很重要的作用，本次项目中用到合作单位提供的一个信号标识，但是对方不提供接口只提供HTML网页解析，所以客户端只能拿到HTML源码之后对HTML源码进行解析，拿到自己需要的数据。</p>
+<blockquote>
+<p>demo地址：<a href="https://github.com/misszero8090/httpParse" target="_blank" rel="external">https://github.com/misszero8090/httpParse</a></p>
+</blockquote>
+<ul>
+<li><p>先下载hpple库，推荐使用cocoapods导入，但因我们项目原因，这里重点说后者，手动导入。去github下载包，地址：<a href="https://github.com/topfunky/hpple" target="_blank" rel="external">https://github.com/topfunky/hpple</a></p>
+</li>
+<li><p>将库引入project , 添加静态库<code>libxml2.2.dylib</code>，注意我使用的是<code>xcode8.3.3 iOS10</code>开发，默认情况下是<code>.tbd</code>， 因为库需要用<code>.dylib</code>，所以在/usr/lib目录下还有.dylib文件。</p>
+</li>
+<li><p>在<code>header search path</code>设置<code>$(SDKROOT)/usr/lib/libxml2</code>。</p>
+</li>
+<li>在<code>user Heather search path</code>设置<code>$(SDKROOT)/usr/include/libxml2</code></li>
+<li><p>在<code>FrameWork search path</code>设置<code>/usr/lib/libxml2.2.dylib</code></p>
+</li>
+<li><p>以上设置完成之后，导入<code>#import &quot;TFHpple.h&quot;</code></p>
+</li>
+</ul>
+<p>Objective-C解析HTML&lt;后附 RSSI.html源代码&gt;<br>拿到rssi后面的值：</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/07/12/hpple的使用/#more" rel="contents">
@@ -1071,12 +1077,9 @@ demo地址：https://github.com/misszero8090/httpPar
 
       
         
-          
-          
-为提高自己的基础知识水平，最近看了一些笔试相关题目，感觉很多说不清楚和明白，我会在这篇文中中去分享一些面试题和答案，供大家参考，如有错误的地方请大家指正。谢谢！
-
-什么情况使用 weak 关键字，相比 assign 有什么不同？什么情况使用 weak 关键字？在 ARC 中,在有可能出现循环引用的
-          ...
+          <blockquote>
+<p>为提高自己的基础知识水平，最近看了一些笔试相关题目，感觉很多说不清楚和明白，我会在这篇文中中去分享一些面试题和答案，供大家参考，如有错误的地方请大家指正。谢谢！</p>
+</blockquote>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/19/iOS面试题/#more" rel="contents">
@@ -1355,19 +1358,39 @@ demo地址：https://github.com/misszero8090/httpPar
 
       
         
-          
-          
-本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。
-目录
-
-
-判断字符串是否为IP地址
-获取设备在局域网中的IP地址
-使用Reachability监测网络环境
-UIGraphicsBeginImageContext消除锯齿
-iOS线程
-U
-          ...
+          <blockquote>
+<p>本文章主要我在实际开发过程中常用到的一些方法或函数，未来类似功能可以直接调用或者修改即可使用。本篇将长期更新。<br></p>
+<p>目录</p>
+</blockquote>
+<ul>
+<li>判断字符串是否为IP地址</li>
+<li>获取设备在局域网中的IP地址</li>
+<li>使用Reachability监测网络环境</li>
+<li>UIGraphicsBeginImageContext消除锯齿</li>
+<li>iOS线程</li>
+<li>UIbutton图片和文字默认偏移（上下）</li>
+<li>判断设置是否越狱</li>
+<li>判断是否是数字</li>
+<li>判断是否是字符（a-z）</li>
+<li>获取当前任务占用的内存</li>
+<li>获取中英文混合字符串的长度</li>
+<li>获取字节长度</li>
+<li>获取app的沙盒路径</li>
+<li>为Button绘制背景图片</li>
+<li>判断空字符串</li>
+<li>判断单个文件大小</li>
+<li>获取视频第一帧</li>
+<li>获取系统字体</li>
+<li>比对与当前时间的天数差</li>
+<li>色值转换（#2324512z转UIColor）</li>
+<li>通过颜色设置图片</li>
+<li>通过颜色设置图片（有高度）</li>
+<li>将图片转换为黑白</li>
+<li>缓存图片到本地  (注意：需要指定缓存路径，获取到本地沙盒路径等)。</li>
+<li>图片裁剪（传入Rect）</li>
+<li>按尺寸压缩图片</li>
+<li>UIImage两种加载方式比较</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/06/iOS开发中工具类（方法）/#more" rel="contents">
@@ -1505,15 +1528,16 @@ U
 
       
         
-          
-          
-近期增加了object-c的具体应用，包括手势绘制，验证，更新，以及处理了一些手势绘制过程中Bug。详情见object-c实现。
-
-
-一、swift实现
-
-使用swift实现iOS手势锁屏，虽然在iOS客户端很少使用到滑动手势，但是有时候为了和安卓应用保持用户交互的一致性，所以有的时候还是很有必要
-          ...
+          <blockquote>
+<p>近期增加了object-c的具体应用，包括手势绘制，验证，更新，以及处理了一些手势绘制过程中Bug。详情见object-c实现。</p>
+</blockquote>
+<ul>
+<li>一、swift实现</li>
+</ul>
+<p>使用swift实现iOS手势锁屏，虽然在iOS客户端很少使用到滑动手势，但是有时候为了和安卓应用保持用户交互的一致性，所以有的时候还是很有必要的。<br>iOS客户端解锁建议使用touch ID。</p>
+<p>swift与object-c的CGContextRef不一样，在swift中统一使用CGContext进行管理和使用。</p>
+<p>本示例采用9*button进行绘制，关闭button交互事件，通过touchesBegan系列方法对滑动路径进行跟踪和绘制（imageView）。</p>
+<p>以下为全部代码：<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/05/swift实现手势解锁绘制/#more" rel="contents">
@@ -1651,10 +1675,7 @@ U
 
       
         
-          
-          几年我25岁了，除了日常的生活工作学习，在闲暇时间我不清楚我自己该做点什么或者去哪看看。平常工作盼着假期，而到了假期却憧憬着工作。对，这就是我，一个25岁还没有找到能够让自己快乐或者觉得有意义的事情。
-记得，曾经也喜欢到处游走，哪怕什么都不做，看看就是好的，心里也就满足。近年来，一到假期到处都是人山
-          ...
+          <p>几年我25岁了，除了日常的生活工作学习，在闲暇时间我不清楚我自己该做点什么或者去哪看看。平常工作盼着假期，而到了假期却憧憬着工作。对，这就是我，一个25岁还没有找到能够让自己快乐或者觉得有意义的事情。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/05/我，“没有爱好”/#more" rel="contents">
@@ -1807,7 +1828,7 @@ U
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

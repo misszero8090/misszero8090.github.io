@@ -930,10 +930,8 @@
 
       
         
-          
-          1、保存到本地Plist文件
-123456789101112131415161718192021222324252627282930313233343536- (IBAction)plistSave:(UIButton *)sender &#123;   //获取沙盒路径    NSString *
-          ...
+          <p>1、保存到本地Plist文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">- (IBAction)plistSave:(UIButton *)sender &#123;</div><div class="line"></div><div class="line">   //获取沙盒路径</div><div class="line">    NSString *sandBoxPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;</div><div class="line"></div><div class="line">    //新建路径存储plist文件</div><div class="line">    NSString *plistPath = [sandBoxPath stringByAppendingString:@&quot;/StudentInfo.plist&quot;];</div><div class="line"></div><div class="line">    //申明根数组</div><div class="line">    NSMutableArray *rootArray = nil;</div><div class="line"></div><div class="line">    //判断沙盒路径是否存在，根据沙盒路径初始化数组，不存在初始化数组</div><div class="line">    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath]) &#123;</div><div class="line">        //根据沙盒路径初始化数组</div><div class="line">        rootArray = [NSMutableArray arrayWithContentsOfFile:plistPath];</div><div class="line">    &#125;else&#123;</div><div class="line">        rootArray = [NSMutableArray array];</div><div class="line">    &#125;</div><div class="line">    //打包数据信息</div><div class="line">    if (self.name.text.length == 0 || self.age.text.length == 0 || self.grade.text.length == 0) &#123;</div><div class="line">        NSLog(@&quot;信息不完整，存储失败&quot;);</div><div class="line">    &#125;else&#123;</div><div class="line">       NSDictionary *dic = @&#123;@&quot;name&quot;:self.name.text,@&quot;age&quot;:self.age.text,@&quot;grade&quot;:self.grade.text&#125;;</div><div class="line">        [rootArray addObject:dic];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //存入plist文件</div><div class="line">    if ([rootArray writeToFile:plistPath atomically:YES]) &#123;</div><div class="line">        NSLog(@&quot;存储成功&quot;);</div><div class="line">    &#125;else&#123;</div><div class="line">        NSLog(@&quot;存储失败&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    NSLog(@&quot;%@&quot;,plistPath);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/07/18/iOS数据持久化/#more" rel="contents">
@@ -1071,17 +1069,15 @@
 
       
         
-          
-          
-iOS地图定位
-
-
-导入地图框架
-
-12#import &lt;MapKit/MapKit.h&gt;#import &lt;CoreLocation/CoreLocation.h&gt;
-1、定位
-123456789101112131415161718192021222324//CLLocati
-          ...
+          <blockquote>
+<p>iOS地图定位</p>
+</blockquote>
+<ul>
+<li>导入地图框架</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#import &lt;MapKit/MapKit.h&gt;</div><div class="line">#import &lt;CoreLocation/CoreLocation.h&gt;</div></pre></td></tr></table></figure>
+<p>1、定位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">//CLLocationManager定位器</div><div class="line">//1 判断设备是否支持定位服务</div><div class="line">    if (![CLLocationManager locationServicesEnabled]) &#123;</div><div class="line">        NSLog(@&quot;不支持此设备&quot;);</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    //2 创建定位服务</div><div class="line">    _locationManager = [[CLLocationManager alloc] init];</div><div class="line">    //3 请求用户授权(使用期间)  在info.plist文件添加的字段必须与设置的字段一致</div><div class="line">    [_locationManager requestWhenInUseAuthorization];</div><div class="line"></div><div class="line">    //4 配置定位服务</div><div class="line">    //4.1 设置定位精度</div><div class="line">    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;</div><div class="line">    //4.2 设置过滤距离(以用户位置方圆100米为半径，实际位置超过该范围才会更新位置。否则不更新)</div><div class="line">    _locationManager.distanceFilter = 100;</div><div class="line">    //4.3 设置代理</div><div class="line">    _locationManager.delegate = self;</div><div class="line"></div><div class="line">    //5 开始定位,定位为耗时操作。定位成功后一定关闭定位。</div><div class="line">    [_locationManager startUpdatingLocation];</div><div class="line">// 在模拟器上定位失败的解决方法</div><div class="line">//1 重置模拟器</div><div class="line">//2 模拟器设置。debug - location - apple 和 customer 之间切换</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/07/18/地图与定位/#more" rel="contents">
@@ -1219,18 +1215,17 @@ iOS地图定位
 
       
         
-          
-          
-iOS动画分为基础动画和核心动画
-
-iOS中关键动画如下
-
-CALayer动画
-CABasicAnimation 基础动画
-CAKeyFrameAnimation 关键帧动画
-CaTransition 过度、转场动画
-CAAnimationGroup 组合动画 注：以上动画必须加载到layer上执
-          ...
+          <blockquote>
+<p>iOS动画分为基础动画和核心动画</p>
+</blockquote>
+<p>iOS中关键动画如下</p>
+<ul>
+<li>CALayer动画</li>
+<li>CABasicAnimation 基础动画</li>
+<li>CAKeyFrameAnimation 关键帧动画</li>
+<li>CaTransition 过度、转场动画</li>
+<li>CAAnimationGroup 组合动画 <br><br>注：以上动画必须加载到layer上执行</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/07/18/iOS动画/#more" rel="contents">
@@ -1368,10 +1363,7 @@ CAAnimationGroup 组合动画 注：以上动画必须加载到layer上执
 
       
         
-          
-          iOS原生照片库视频格式为.mov，内存占用大，在发送文件中对它进行压缩为mp4。
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585
-          ...
+          <p>iOS原生照片库视频格式为.mov，内存占用大，在发送文件中对它进行压缩为mp4。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/03/30/iOS视频转换/#more" rel="contents">
@@ -1524,7 +1516,7 @@ CAAnimationGroup 组合动画 注：以上动画必须加载到layer上执
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

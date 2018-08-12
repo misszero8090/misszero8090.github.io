@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://he8090.cn/2017/12/18/编译iOS的boost库/index.html">
 <meta property="og:site_name" content="靠北’s Notes">
 <meta property="og:description" content="环境：xcode9mac os 10.13 1、下载boost库并解压2、cd到解压后的文件包内，执行 bootstrap.sh```（解压后会得到这个脚本文件）。12343、执行```./b2``` 编译整个库。4、经过一段时间编译后，得到编译后的头文件和库文件。5、运行 ```sudo ./b2 install``` 命令 将编译后的库安装到系统默认路径/usr/local/include下6">
-<meta property="og:updated_time" content="2017-12-18T06:20:41.703Z">
+<meta property="og:updated_time" content="2018-08-12T10:37:08.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译iOS的Boost库">
 <meta name="twitter:description" content="环境：xcode9mac os 10.13 1、下载boost库并解压2、cd到解压后的文件包内，执行 bootstrap.sh```（解压后会得到这个脚本文件）。12343、执行```./b2``` 编译整个库。4、经过一段时间编译后，得到编译后的头文件和库文件。5、运行 ```sudo ./b2 install``` 命令 将编译后的库安装到系统默认路径/usr/local/include下6">
@@ -365,7 +365,7 @@
       
         <p>环境：<br>xcode9<br>mac os 10.13</p>
 <p>1、下载boost库并解压<br>2、cd到解压后的文件包内，执行 <figure class="highlight sh"><figcaption><span>bootstrap.sh```（解压后会得到这个脚本文件）。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">3、执行```./b2``` 编译整个库。</div><div class="line">4、经过一段时间编译后，得到编译后的头文件和库文件。</div><div class="line">5、运行 ```sudo ./b2 install``` 命令 将编译后的库安装到系统默认路径/usr/<span class="built_in">local</span>/include下</div><div class="line">6、这时候得到的库文件可能只是X86_64此类模拟器架构运行的库，如果需要真机库需要在第3步之后按照实际情况运行以下脚本。```sh myBuildBoost.sh</div></pre></td></tr></table></figure></p>
-<p>7、运行后会编译出需要架构的库文件，直接将编译完成之后的库文件复制到系统目录下即可。<br>8、xcode调试，依次在<figure class="highlight plain"><figcaption><span>Search path```  和 ```library search path```后添加头文件和库文件路径```/usr/local/include```    ```/usr/local/lib```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">9、在build phases -&gt;link binaru with libray中添加需要的库文件。</div><div class="line">10、在实际真机运行中可能会要求关闭bitcode，关闭即可运行。</div></pre></td></tr></table></figure></p>
+<p>7、运行后会编译出需要架构的库文件，直接将编译完成之后的库文件复制到系统目录下即可。<br>8、xcode调试，依次在<figure class="highlight plain"><figcaption><span>Search path```  和 ```library search path```后添加头文件和库文件路径```/usr/local/include```    ```/usr/local/lib```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">9、在build phases -&gt;link binaru with libray中添加需要的库文件。</div><div class="line">10、在实际真机运行中可能会要求关闭bitcode，关闭即可运行。</div><div class="line"></div><div class="line">&lt;!-- more --&gt;</div></pre></td></tr></table></figure></p>
 <p>myBuildBoost.sh</p>
 <p>#!/bin/sh</p>
 <h1 id="myBuildBoost-sh"><a href="#myBuildBoost-sh" class="headerlink" title="myBuildBoost.sh"></a>myBuildBoost.sh</h1><h1 id="TestMaster"><a href="#TestMaster" class="headerlink" title="TestMaster"></a>TestMaster</h1><p>#</p>
@@ -610,7 +610,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
